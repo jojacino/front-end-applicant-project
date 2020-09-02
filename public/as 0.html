@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:3000/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <link rel="icon" href="http://localhost:3000/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Web site created using create-react-app">
+    <link rel="apple-touch-icon" href="http://localhost:3000/logo192.png">
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="http://localhost:3000/manifest.json">
+    <!--
+      Notice the use of  in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+  <style type="text/css">:root {
+    --font-blockchains: Galaxie Polaris Condensed;
+    --font-blockchains-sup: 'Puritan', sans-serif;
+    --font-blockchains-alt: 'Arial', serif;
+    --font-serif: 100% Open Sans, sans-serif;
+    --color-teal: #009999;
+    --color-black: #333333;
+    --color-dark-gray: #666666;
+    --color-med-gray: #999999;
+    --color-light-gray: #CCCCCC;
+    --color-off-white: #FFFFFF;
+    --color-rgba-teal: rgba(0, 133, 161, 1);
+    --color-rgba-black: rgba(67, 67, 69, 1);
+    --color-rgba-dark-gray: rgba(103, 104, 107, 1);
+    --color-rgba-med-gray: rgba(140, 142, 144, 1);
+    --color-rgba-light-gray: rgba(228, 229, 230, 1);
+    --color-rgba-off-white: rgba(239, 239, 244, 1);
+}
+
+body {
+    background-color: var(--color-black);
+    
+}
+
+input[ type=text ] {
+    outline: none;
+    border: none;
+    text-transform: none;
+}
+</style><style type="text/css">
+.typeahead-component {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    width: 100%;
+}
+
+.typeahead-section {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.typeahead-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    width: 100%;
+    max-width: 800px;
+    border: solid 2px var(--color-med-gray);
+    border-bottom: solid 15px var(--color-dark-gray);
+    border-radius: 9px;
+    overflow: hidden;
+}
+
+.typeahead-header {
+
+    text-align: center;
+
+    font-family: var(--font-blockchains);
+    font-size: 36pt;
+    color: var(--color-teal);
+
+    margin-top: 15px;
+}
+
+.typeahead-img {
+    height: 65px;
+    width: 100%;
+
+    background: url("data:image/png;base64,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");
+    
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    margin: 15px 0;
+
+}
+
+.typeahead-input {
+    height: 30px;
+    width: 100%;
+    font-family: var(--font-blockchains);
+    font-size: 14pt;
+    color: var(--color-black);
+    text-align: center;
+    border-radius: 9px;
+    box-shadow: 0 0 0 5px var(--color-dark-gray);
+}
+
+.suggestions-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 100%;
+    max-width: 800px;
+}
+.suggestions-list {
+    display: flex;
+    height: 30px;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+.suggestion-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-rgba-med-gray);
+    font-size: 14pt;
+    border-bottom: solid thin var(--color-rgba-dark-gray);
+    height: 30px;
+    width: 100%;
+    max-width: 780px;
+    padding: 9px;
+    cursor: pointer;
+}
+    .suggestion-item:hover {
+        background-color: #292929;
+    }
+    .suggestion-item:focus {
+        background-color: #000;
+        outline: none;
+    }
+
+@media only screen and (min-width: 300px) {
+}
+
+@media only screen and (min-width: 400px) {
+}
+
+@media only screen and (min-width: 500px) {
+}
+
+@media only screen and (min-width: 700px) {
+}</style><style type="text/css">
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    width: 100%;
+
+    margin: 50px;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    width: 100%;
+    color: white;
+    padding: 3px;
+    margin: 5px;
+    background-color: rgba(255,255,255, 0.05);
+}
+    .button:hover {
+        cursor: pointer;
+        background-color: rgba(255,255,255, 0.15);
+    }
+
+
+.button-selected {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    width: 100%;
+    color: white;
+    padding: 3px;
+    margin: 5px;
+    background-color: rgba(255,255,255, 0.25);
+}</style></head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"><div class="typeahead-component"><div class="menu"><div class="button-selected">Colors</div><div class="button">Dictionary</div></div><div class="typeahead-header" style="color: var(--color-teal);">Blockchains TypeAhead</div><div class="typeahead-img"></div><section class="typeahead-section"><div class="typeahead-container"><input class="typeahead-input" id="typeahead-input" type="text" autocomplete="off" placeholder="Search Blockchains" value="dfslg"></div><div class="suggestions-container"><div class="suggestions-list"></div></div></section></div></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  <script src="./as 0_files/bundle.js.download"></script><script src="./as 0_files/1.chunk.js.download"></script><script src="./as 0_files/main.chunk.js.download"></script><script src="./as 0_files/main.ea90e6d854efb88c89b5.hot-update.js.download"></script>
+
+</body></html>

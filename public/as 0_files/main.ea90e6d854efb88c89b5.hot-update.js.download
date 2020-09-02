@@ -1,0 +1,369 @@
+webpackHotUpdate("main",{
+
+/***/ "./src/typeahead/typeahead_search/typeahead_search.js":
+/*!************************************************************!*\
+  !*** ./src/typeahead/typeahead_search/typeahead_search.js ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _typeahead_search_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./typeahead_search.css */ "./src/typeahead/typeahead_search/typeahead_search.css");
+/* harmony import */ var _typeahead_search_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_typeahead_search_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _menu_menu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../menu/menu */ "./src/typeahead/menu/menu.js");
+/* harmony import */ var _tyoeahead_input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./tyoeahead_input */ "./src/typeahead/typeahead_search/tyoeahead_input.js");
+/* harmony import */ var _suggestion_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./suggestion_container */ "./src/typeahead/typeahead_search/suggestion_container.js");
+var _jsxFileName = "C:\\Users\\jojac\\Documents\\webworks\\front-end-applicant-project\\src\\typeahead\\typeahead_search\\typeahead_search.js";
+ // css for website, default css for page and element
+
+ // paired components
+
+
+
+ // Exported Component
+
+class TypeAhead extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: '',
+      list: this.props.colorsList || [],
+      suggestions: [],
+      themeColor: 'var(--color-teal)',
+      suggestionElements: document.getElementsByClassName('suggestion-item'),
+      suggestionElementIndex: 0
+    };
+    this.handleBlur = this.handleBlur.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleSelection = this.handleSelection.bind(this);
+  }
+
+  addToList(item) {
+    var list = [...this.state.list];
+    list.push(item);
+    this.setState({
+      list
+    });
+  }
+
+  removeFromList(item) {
+    var list = [...this.state.list];
+    list.splice(list.indexOf(item), 1);
+    this.setState({
+      list
+    });
+  }
+
+  handleChange(e) {
+    var value = e.target.value.replace(/[^a-zA-Z]/g, ''); // if input value get filtered suggestions / sorted and match to input
+
+    if (value.length) {
+      // match non-case-specificly to suggestions
+      var suggestions = this.state.list.sort().filter(item => item.toLowerCase().match(value.toLowerCase())); // set new input display value and suggestions
+
+      this.setState({
+        suggestions,
+        value
+      });
+    } else // clear suggestions if no match
+      this.setState({
+        suggestions: [],
+        value: ''
+      });
+  }
+
+  handleFocus(e) {
+    e.preventDefault(); //console.log("Focus")
+
+    this.handleChange(e);
+  }
+
+  handleBlur(e) {
+    // console.log("Blur")
+
+    /** only clear suggestions if tabbing away from input and suggestion list */
+    if (!e.relatedTarget) {
+      // comes back null if new target is not an input and does NOT have a tabIndex
+      // when blur from input or suggestions; empty suggestion box
+      this.setState({
+        suggestions: []
+      });
+    }
+  }
+
+  handleKeyPress(e) {
+    console.log("handleKeyPress");
+    console.log(e); // get element with focus
+
+    var focus = document.activeElement; // get id of element with focus
+
+    var id = focus.id; // verify which key is pressed
+
+    if (e.key === 'Enter') {
+      //console.log("Enter Key Pressed")
+      var value;
+
+      if (id === 'typeahead-input') {
+        // set the value of input to matching value in list on pressing enter inside the input
+        value = this.state.suggestions.find(item => item.toLowerCase() === focus.value.toLowerCase()); // cancle actions if input value is not found in suggestions list
+
+        if (!value) return;
+      } else {
+        // clear out the bold JSX from string before putting it in the input
+        value = this.removeHtmlTags(e.target.innerHTML);
+      } // set sate value to innerHTML of selection
+
+
+      this.setState({
+        value,
+        themeColor: value
+      }); // set the focus to the input again
+
+      document.getElementById('typeahead-input').focus();
+    } else if (e.key === 'Escape') {
+      //console.log("Escape Key Pressed")
+      // close the suggestions list if it is open
+      if (this.state.suggestions.length) this.setState({
+        suggestions: []
+      });
+    } else if (e.key === 'ArrowUp') {
+      //console.log("Up Key Pressed")
+      //console.log("Up Key Pressed")
+      // if id === suggestion-item than focus cycles up, we decrement but focus on input if focus is on item(0)
+      if (id === 'suggestion-item') {
+        //console.log("SUGGESTION ITEM")
+        // use state.suggestionElementIndex to cycle selections
+        var index = this.state.suggestionElementIndex; // if on the first suggestion focus on input
+
+        if (index === 0) document.getElementById('typeahead-input').focus();else {
+          // focus is on a suggestion element
+          // decrement index and cycle selection upward
+          index--; // set in state
+
+          this.setState({
+            suggestionElementIndex: index
+          }); // set focus to first element in suggestions list if suggestions has content
+
+          if (this.state.suggestions.length) this.state.suggestionElements[this.state.suggestionElementIndex].focus();
+        }
+      } else if (id === 'typeahead-input') {
+        // focus is on input
+        //console.log("TYPEAHEAD")
+        // reset suggestions element index in state to 0
+        this.setState({
+          suggestionElementIndex: this.state.suggestionElements.length - 1
+        }); // set focus to first element in suggestions list if suggestions has content
+
+        if (this.state.suggestions.length) this.state.suggestionElements[this.state.suggestionElementIndex].focus();
+      } else // set focus to the input                
+        document.getElementById('typeahead-input').focus();
+    } else if (e.key === 'ArrowDown') {
+      //console.log("DOWN Key Pressed")
+      // if id === suggestion-item than focus is already on a list item; so we increment
+      if (id === 'suggestion-item') {
+        //console.log("SUGGESTION ITEM")
+        // use state.suggestionElementIndex to cycle selections
+        var index = this.state.suggestionElementIndex; // increment index and cycle if at state.suggestionElements length
+
+        index++;
+        if (index >= this.state.suggestionElements.length) index = 0; // save to state
+
+        this.setState({
+          suggestionElementIndex: index
+        }); // set focus to element at new index
+
+        this.state.suggestionElements[this.state.suggestionElementIndex].focus();
+      } else if (id === 'typeahead-input') {
+        // focus is on input
+        //console.log("TYPEAHEAD")
+        // reset suggestions element index in state to 0
+        this.setState({
+          suggestionElementIndex: 0
+        }); // set focus to first element in suggestions list if suggestions has content
+
+        if (this.state.suggestions.length) this.state.suggestionElements[this.state.suggestionElementIndex].focus();
+      } else // set focus to the input if focus is somewhere else on the page
+        document.getElementById('typeahead-input').focus();
+    }
+  }
+
+  handleSelection(e) {
+    //console.log("SHOWING COLOR IN handleSelection")
+    //console.log(e.target.innerHTML)
+    // clear out the bold JSX from string before putting it in the input
+    var value = this.removeHtmlTags(e.target.innerHTML); // set sate value to innerHTML of selection and reset suggestions
+
+    this.setState({
+      value,
+      suggestions: [],
+      themeColor: value
+    });
+  }
+
+  removeHtmlTags(str) {
+    return str.replace('<b>', '').replace('</b>', '').replace('<div>', '').replace('</div>', '');
+  }
+
+  boldChars(str, sub) {
+    /** Custom Type Checking Block /**/
+    if (!str || !typeof str === 'string' || !sub || !typeof sub === 'string') return Error("Custom Type Check by Applicant: Joseph M. Davison :: method boldChars in typeahead_search.js :: Improper Argument Used! Please use type 'string"); // match with case insensitivity
+
+    var index = str.toLowerCase().indexOf(sub.toLowerCase()); // cancel method if no substring is found
+
+    if (index === -1) return; // slice up string to bold the matching portion
+
+    var start = str.slice(0, index);
+    var mid = str.slice(index, index + sub.length);
+    var end = str.slice(index + sub.length, str.length); // construct and return JSX
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 245,
+        columnNumber: 13
+      }
+    }, start, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 247,
+        columnNumber: 17
+      }
+    }, mid), end);
+  }
+
+  xhrPromise(url) {
+    return new Promise((resolve, reject) => {
+      // create an XHR
+      var request = new XMLHttpRequest();
+      request.open('post', url, true); // set general request headers, using urlencoded RESTful header
+
+      request.onreadystatechange = () => {
+        //console.log("PROCESSING RESPONSE")
+        if (request.readyState === 4 && request.status === 200) {
+          //console.log(JSON.parse(request.response))
+          resolve(JSON.parse(request.response));
+        }
+      }; // send XHR
+
+
+      request.send();
+    });
+  }
+
+  dictionaryLookup(word) {
+    // end point for dictionary.com
+    const endPoint = 'https://www.dictionaryapi.com/api/v3/references/collegiate/json/' + word + '?key=805ab663-44f1-4bc9-a1ff-c3b2f743d1fb'; // returns XHR Promise
+
+    return this.xhrPromise(endPoint).then(data => {
+      console.log("dictionaryLookup"); //console.log(data)
+    });
+  }
+
+  thesaurusSuggestions(word) {
+    // end point for dictionary.com thesaurus
+    const thesExp = 'https://www.dictionaryapi.com/api/v3/references/thesaurus/json/' + word + '?key=35c898d4-6518-4c3c-8289-91eb8ec78c8e'; // returns XHR Promise
+
+    return this.xhrPromise(thesExp).then(arrThesaurus => {
+      console.log("thesaurusSuggestions"); //console.log(arrThesaurus)
+
+      return arrThesaurus;
+    });
+  }
+
+  componentWillMount() {
+    /** add doument event listeners  before render /**/
+    document.addEventListener('keydown', e => {
+      this.handleKeyPress(e);
+    });
+  }
+
+  componentWillUnmount() {
+    /** remove doument event listeners  before de-render /**/
+    document.removeEventListener('keydown', e => {
+      this.handleKeyPress(e);
+    });
+  }
+
+  render() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "typeahead-component",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 314,
+        columnNumber: 13
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_menu_menu__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 317,
+        columnNumber: 17
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "typeahead-header",
+      style: {
+        color: this.state.themeColor
+      },
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 320,
+        columnNumber: 17
+      }
+    }, "Blockchains TypeAhead"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "typeahead-img",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 327,
+        columnNumber: 17
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+      className: "typeahead-section",
+      onBlur: this.handleBlur,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 332,
+        columnNumber: 17
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tyoeahead_input__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      handleChange: this.handleChange,
+      handleFocus: this.handleFocus,
+      value: this.state.value,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 336,
+        columnNumber: 21
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_suggestion_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      boldChars: this.boldChars,
+      handleSelection: this.handleSelection,
+      suggestions: this.state.suggestions,
+      value: this.state.value,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 341,
+        columnNumber: 21
+      }
+    })));
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (TypeAhead);
+
+/***/ })
+
+})
+//# sourceMappingURL=main.ea90e6d854efb88c89b5.hot-update.js.map

@@ -1,6 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+import './index.css'
+
+import TypeAhead from './typeahead/typeahead_search/typeahead_search'
+
 const colorsList = [
   "AliceBlue",
   "AntiqueWhite",
@@ -150,11 +154,9 @@ const colorsList = [
   "WhiteSmoke",
   "Yellow",
   "YellowGreen",
-];
+]
 
 ReactDOM.render(
-  {
-    /* <YourComponentGoesHere /> */
-  },
-  document.getElementById("root")
-);
+    <TypeAhead colorsList={colorsList} />,
+    document.getElementById('root')
+)

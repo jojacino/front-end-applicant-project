@@ -1,0 +1,861 @@
+(this["webpackJsonpfront-end-applicant-project"] = this["webpackJsonpfront-end-applicant-project"] || []).push([["main"],{
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/index.css":
+/*!**************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!./node_modules/postcss-loader/src??postcss!./src/index.css ***!
+  \**************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, ":root {\r\n    --font-blockchains: Galaxie Polaris Condensed;\r\n    --font-blockchains-sup: 'Puritan', sans-serif;\r\n    --font-blockchains-alt: 'Arial', serif;\r\n    --font-serif: 100% Open Sans, sans-serif;\r\n    --color-teal: #009999;\r\n    --color-black: #333333;\r\n    --color-dark-gray: #666666;\r\n    --color-med-gray: #999999;\r\n    --color-light-gray: #CCCCCC;\r\n    --color-off-white: #FFFFFF;\r\n    --color-rgba-teal: rgba(0, 133, 161, 1);\r\n    --color-rgba-black: rgba(67, 67, 69, 1);\r\n    --color-rgba-dark-gray: rgba(103, 104, 107, 1);\r\n    --color-rgba-med-gray: rgba(140, 142, 144, 1);\r\n    --color-rgba-light-gray: rgba(228, 229, 230, 1);\r\n    --color-rgba-off-white: rgba(239, 239, 244, 1);\r\n}\r\n\r\nbody {\r\n    background-color: var(--color-black);\r\n    \r\n}\r\n\r\ninput[ type=text ] {\r\n    outline: none;\r\n    border: none;\r\n    text-transform: none;\r\n}\r\n", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/typeahead/menu/menu.css":
+/*!****************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!./node_modules/postcss-loader/src??postcss!./src/typeahead/menu/menu.css ***!
+  \****************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, "\r\n.menu {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    height: 35px;\r\n    width: 100%;\r\n\r\n    margin: 50px;\r\n}\r\n\r\n.button {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    height: 35px;\r\n    width: 100%;\r\n    color: white;\r\n    padding: 3px;\r\n    margin: 5px;\r\n    background-color: rgba(255,255,255, 0.05);\r\n}\r\n    .button:hover {\r\n        cursor: pointer;\r\n        background-color: rgba(255,255,255, 0.15);\r\n    }\r\n\r\n\r\n.button-selected {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    height: 35px;\r\n    width: 100%;\r\n    color: white;\r\n    padding: 3px;\r\n    margin: 5px;\r\n    background-color: rgba(255,255,255, 0.25);\r\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/typeahead/typeahead_search/typeahead_search.css":
+/*!****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!./node_modules/postcss-loader/src??postcss!./src/typeahead/typeahead_search/typeahead_search.css ***!
+  \****************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, "\r\n.typeahead-component {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    justify-content: center;\r\n    height: auto;\r\n    width: 100%;\r\n}\r\n\r\n.typeahead-section {\r\n    width: 100%;\r\n    display: flex;\r\n    align-items: center;\r\n    flex-direction: column;\r\n}\r\n\r\n.typeahead-container {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    justify-content: center;\r\n    height: auto;\r\n    width: 100%;\r\n    max-width: 800px;\r\n    border: solid 2px var(--color-med-gray);\r\n    border-bottom: solid 15px var(--color-dark-gray);\r\n    border-radius: 9px;\r\n    overflow: hidden;\r\n}\r\n\r\n.typeahead-header {\r\n\r\n    text-align: center;\r\n\r\n    font-family: var(--font-blockchains);\r\n    font-size: 36pt;\r\n    color: var(--color-teal);\r\n\r\n    margin-top: 15px;\r\n}\r\n\r\n.typeahead-img {\r\n    height: 65px;\r\n    width: 100%;\r\n\r\n    background: url(\"data:image/png;base64,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\");\r\n    \r\n    background-position: center;\r\n    background-repeat: no-repeat;\r\n    background-size: contain;\r\n\r\n    margin: 15px 0;\r\n\r\n}\r\n\r\n.typeahead-input {\r\n    height: 30px;\r\n    width: 100%;\r\n    font-family: var(--font-blockchains);\r\n    font-size: 14pt;\r\n    color: var(--color-black);\r\n    text-align: center;\r\n    border-radius: 9px;\r\n    box-shadow: 0 0 0 5px var(--color-dark-gray);\r\n}\r\n\r\n.suggestions-container {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    justify-content: center;\r\n    height: 30px;\r\n    width: 100%;\r\n    max-width: 800px;\r\n}\r\n.suggestions-list {\r\n    display: flex;\r\n    height: 30px;\r\n    width: 100%;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    justify-content: flex-start;\r\n}\r\n.suggestion-item {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    justify-content: center;\r\n    color: var(--color-rgba-med-gray);\r\n    font-size: 14pt;\r\n    border-bottom: solid thin var(--color-rgba-dark-gray);\r\n    height: 30px;\r\n    width: 100%;\r\n    max-width: 780px;\r\n    padding: 9px;\r\n    cursor: pointer;\r\n}\r\n    .suggestion-item:hover {\r\n        background-color: #292929;\r\n    }\r\n    .suggestion-item:focus {\r\n        background-color: #000;\r\n        outline: none;\r\n    }\r\n\r\n@media only screen and (min-width: 300px) {\r\n}\r\n\r\n@media only screen and (min-width: 400px) {\r\n}\r\n\r\n@media only screen and (min-width: 500px) {\r\n}\r\n\r\n@media only screen and (min-width: 700px) {\r\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./src/index.css":
+/*!***********************!*\
+  !*** ./src/index.css ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../node_modules/postcss-loader/src??postcss!./index.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/index.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(true) {
+	module.hot.accept(/*! !../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../node_modules/postcss-loader/src??postcss!./index.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/index.css", function() {
+		var newContent = __webpack_require__(/*! !../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../node_modules/postcss-loader/src??postcss!./index.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/index.css");
+
+		if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index.css */ "./src/index.css");
+/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _typeahead_typeahead_search_typeahead_search__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./typeahead/typeahead_search/typeahead_search */ "./src/typeahead/typeahead_search/typeahead_search.js");
+var _jsxFileName = "C:\\Users\\jojac\\Documents\\webworks\\front-end-applicant-project\\src\\index.js";
+
+
+
+
+const colorsList = ["AliceBlue", "AntiqueWhite", "Aqua", "Aquamarine", "Azure", "Beige", "Bisque", "Black", "BlanchedAlmond", "Blue", "BlueViolet", "Brown", "BurlyWood", "CadetBlue", "Chartreuse", "Chocolate", "Coral", "CornflowerBlue", "Cornsilk", "Crimson", "Cyan", "DarkBlue", "DarkCyan", "DarkGoldenRod", "DarkGray", "DarkGrey", "DarkGreen", "DarkKhaki", "DarkMagenta", "DarkOliveGreen", "DarkOrange", "DarkOrchid", "DarkRed", "DarkSalmon", "DarkSeaGreen", "DarkSlateBlue", "DarkSlateGray", "DarkSlateGrey", "DarkTurquoise", "DarkViolet", "DeepPink", "DeepSkyBlue", "DimGray", "DimGrey", "DodgerBlue", "FireBrick", "FloralWhite", "ForestGreen", "Fuchsia", "Gainsboro", "GhostWhite", "Gold", "GoldenRod", "Gray", "Grey", "Green", "GreenYellow", "HoneyDew", "HotPink", "IndianRed", "Indigo", "Ivory", "Khaki", "Lavender", "LavenderBlush", "LawnGreen", "LemonChiffon", "LightBlue", "LightCoral", "LightCyan", "LightGoldenRodYellow", "LightGray", "LightGrey", "LightGreen", "LightPink", "LightSalmon", "LightSeaGreen", "LightSkyBlue", "LightSlateGray", "LightSlateGrey", "LightSteelBlue", "LightYellow", "Lime", "LimeGreen", "Linen", "Magenta", "Maroon", "MediumAquaMarine", "MediumBlue", "MediumOrchid", "MediumPurple", "MediumSeaGreen", "MediumSlateBlue", "MediumSpringGreen", "MediumTurquoise", "MediumVioletRed", "MidnightBlue", "MintCream", "MistyRose", "Moccasin", "NavajoWhite", "Navy", "OldLace", "Olive", "OliveDrab", "Orange", "OrangeRed", "Orchid", "PaleGoldenRod", "PaleGreen", "PaleTurquoise", "PaleVioletRed", "PapayaWhip", "PeachPuff", "Peru", "Pink", "Plum", "PowderBlue", "Purple", "RebeccaPurple", "Red", "RosyBrown", "RoyalBlue", "SaddleBrown", "Salmon", "SandyBrown", "SeaGreen", "SeaShell", "Sienna", "Silver", "SkyBlue", "SlateBlue", "SlateGray", "SlateGrey", "Snow", "SpringGreen", "SteelBlue", "Tan", "Teal", "Thistle", "Tomato", "Turquoise", "Violet", "Wheat", "White", "WhiteSmoke", "Yellow", "YellowGreen"];
+react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_typeahead_typeahead_search_typeahead_search__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  colorsList: colorsList,
+  __self: undefined,
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 160,
+    columnNumber: 5
+  }
+}), document.getElementById('root'));
+
+/***/ }),
+
+/***/ "./src/typeahead/menu/menu.css":
+/*!*************************************!*\
+  !*** ./src/typeahead/menu/menu.css ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../../node_modules/postcss-loader/src??postcss!./menu.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/typeahead/menu/menu.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(true) {
+	module.hot.accept(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../../node_modules/postcss-loader/src??postcss!./menu.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/typeahead/menu/menu.css", function() {
+		var newContent = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../../node_modules/postcss-loader/src??postcss!./menu.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/typeahead/menu/menu.css");
+
+		if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./src/typeahead/menu/menu.js":
+/*!************************************!*\
+  !*** ./src/typeahead/menu/menu.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _menu_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./menu.css */ "./src/typeahead/menu/menu.css");
+/* harmony import */ var _menu_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_menu_css__WEBPACK_IMPORTED_MODULE_1__);
+var _jsxFileName = "C:\\Users\\jojac\\Documents\\webworks\\front-end-applicant-project\\src\\typeahead\\menu\\menu.js";
+
+
+
+class Menu extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedButton: 'Colors'
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(e) {
+    this.setState({
+      selectedButton: e.target.innerHTML
+    });
+  }
+
+  render() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "menu",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 20,
+        columnNumber: 13
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      onClick: this.handleClick,
+      className: this.state.selectedButton === 'Colors' ? 'button-selected' : 'button',
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 21,
+        columnNumber: 17
+      }
+    }, "Colors"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      onClick: this.handleClick,
+      className: this.state.selectedButton === 'Dictionary' ? 'button-selected' : 'button',
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 26,
+        columnNumber: 17
+      }
+    }, "Dictionary"));
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Menu);
+
+/***/ }),
+
+/***/ "./src/typeahead/typeahead_search/suggestion_container.js":
+/*!****************************************************************!*\
+  !*** ./src/typeahead/typeahead_search/suggestion_container.js ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _suggestion_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./suggestion_item */ "./src/typeahead/typeahead_search/suggestion_item.js");
+var _jsxFileName = "C:\\Users\\jojac\\Documents\\webworks\\front-end-applicant-project\\src\\typeahead\\typeahead_search\\suggestion_container.js";
+
+ // Exported Component
+
+class SuggestionContainer extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "suggestions-container",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 15,
+        columnNumber: 13
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "suggestions-list",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 17,
+        columnNumber: 17
+      }
+    }, this.props.suggestions.map((suggestion, index) => {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_suggestion_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        key: 'item:' + index,
+        id: "suggestion-item",
+        tabIndex: index / 1000,
+        onMouseUp: this.props.handleSelection,
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 21,
+          columnNumber: 29
+        }
+      }, this.props.boldChars(suggestion, this.props.value));
+    })));
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (SuggestionContainer);
+
+/***/ }),
+
+/***/ "./src/typeahead/typeahead_search/suggestion_item.js":
+/*!***********************************************************!*\
+  !*** ./src/typeahead/typeahead_search/suggestion_item.js ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _jsxFileName = "C:\\Users\\jojac\\Documents\\webworks\\front-end-applicant-project\\src\\typeahead\\typeahead_search\\suggestion_item.js";
+ // Exported Component
+
+class SuggestionItem extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      onMouseUp: this.props.onMouseUp,
+      tabIndex: this.props.tabIndex,
+      className: "suggestion-item",
+      id: this.props.id,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 14,
+        columnNumber: 13
+      }
+    }, this.props.children);
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (SuggestionItem);
+
+/***/ }),
+
+/***/ "./src/typeahead/typeahead_search/tyoeahead_input.js":
+/*!***********************************************************!*\
+  !*** ./src/typeahead/typeahead_search/tyoeahead_input.js ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _jsxFileName = "C:\\Users\\jojac\\Documents\\webworks\\front-end-applicant-project\\src\\typeahead\\typeahead_search\\tyoeahead_input.js";
+ // Exported Component
+
+class TypeAheadInput extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "typeahead-container",
+      style: {
+        borderColor: this.props.themeColor
+      },
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 13,
+        columnNumber: 13
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      className: "typeahead-input",
+      id: "typeahead-input",
+      type: "text",
+      autocomplete: "off",
+      onChange: this.props.handleChange,
+      onFocus: this.props.handleFocus,
+      onDoubleClick: this.props.handleDoubleClick,
+      value: this.props.value,
+      placeholder: "Search Blockchains",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 18,
+        columnNumber: 17
+      }
+    }));
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (TypeAheadInput);
+
+/***/ }),
+
+/***/ "./src/typeahead/typeahead_search/typeahead_search.css":
+/*!*************************************************************!*\
+  !*** ./src/typeahead/typeahead_search/typeahead_search.css ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../../node_modules/postcss-loader/src??postcss!./typeahead_search.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/typeahead/typeahead_search/typeahead_search.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(true) {
+	module.hot.accept(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../../node_modules/postcss-loader/src??postcss!./typeahead_search.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/typeahead/typeahead_search/typeahead_search.css", function() {
+		var newContent = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../../node_modules/postcss-loader/src??postcss!./typeahead_search.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/typeahead/typeahead_search/typeahead_search.css");
+
+		if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./src/typeahead/typeahead_search/typeahead_search.js":
+/*!************************************************************!*\
+  !*** ./src/typeahead/typeahead_search/typeahead_search.js ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _typeahead_search_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./typeahead_search.css */ "./src/typeahead/typeahead_search/typeahead_search.css");
+/* harmony import */ var _typeahead_search_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_typeahead_search_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _menu_menu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../menu/menu */ "./src/typeahead/menu/menu.js");
+/* harmony import */ var _tyoeahead_input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./tyoeahead_input */ "./src/typeahead/typeahead_search/tyoeahead_input.js");
+/* harmony import */ var _suggestion_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./suggestion_container */ "./src/typeahead/typeahead_search/suggestion_container.js");
+var _jsxFileName = "C:\\Users\\jojac\\Documents\\webworks\\front-end-applicant-project\\src\\typeahead\\typeahead_search\\typeahead_search.js";
+ // css for website, default css for page and element
+
+ // paired components
+
+
+
+ // Exported Component
+
+class TypeAhead extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: '',
+      list: this.props.colorsList || [],
+      suggestions: [],
+      themeColor: 'var(--color-teal)',
+      suggestionElements: document.getElementsByClassName('suggestion-item'),
+      suggestionElementIndex: 0
+    };
+    this.handleBlur = this.handleBlur.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleSelection = this.handleSelection.bind(this);
+  }
+
+  addToList(item) {
+    var list = [...this.state.list];
+    list.push(item);
+    this.setState({
+      list
+    });
+  }
+
+  removeFromList(item) {
+    var list = [...this.state.list];
+    list.splice(list.indexOf(item), 1);
+    this.setState({
+      list
+    });
+  }
+
+  handleChange(e) {
+    var value = e.target.value.replace(/[^a-zA-Z]/g, ''); // if input value get filtered suggestions / sorted and match to input
+
+    if (value.length) {
+      // match non-case-specificly to suggestions
+      var suggestions = this.state.list.sort().filter(item => item.toLowerCase().match(value.toLowerCase())); // set new input display value and suggestions
+
+      this.setState({
+        suggestions,
+        value
+      });
+    } else // clear suggestions if no match
+      this.setState({
+        suggestions: [],
+        value: ''
+      });
+  }
+
+  handleFocus(e) {
+    e.preventDefault(); //console.log("Focus")
+
+    this.handleChange(e);
+  }
+
+  handleBlur(e) {
+    // console.log("Blur")
+
+    /** only clear suggestions if tabbing away from input and suggestion list */
+    if (!e.relatedTarget) {
+      // comes back null if new target is not an input and does NOT have a tabIndex
+      // when blur from input or suggestions; empty suggestion box
+      this.setState({
+        suggestions: []
+      });
+    }
+  }
+
+  handleKeyPress(e) {
+    console.log("handleKeyPress");
+    console.log(e); // get element with focus
+
+    var focus = document.activeElement; // get id of element with focus
+
+    var id = focus.id; // verify which key is pressed
+
+    if (e.key === 'Enter') {
+      //console.log("Enter Key Pressed")
+      var value;
+
+      if (id === 'typeahead-input') {
+        // set the value of input to matching value in list on pressing enter inside the input
+        value = this.state.suggestions.find(item => item.toLowerCase() === focus.value.toLowerCase()); // cancle actions if input value is not found in suggestions list
+
+        if (!value) return;
+      } else {
+        // clear out the bold JSX from string before putting it in the input
+        value = this.removeHtmlTags(e.target.innerHTML);
+      } // set sate value to innerHTML of selection
+
+
+      this.setState({
+        value,
+        themeColor: value
+      }); // set the focus to the input again
+
+      document.getElementById('typeahead-input').focus();
+    } else if (e.key === 'Escape') {
+      //console.log("Escape Key Pressed")
+      // close the suggestions list if it is open
+      if (this.state.suggestions.length) this.setState({
+        suggestions: []
+      });
+    } else if (e.key === 'ArrowUp') {
+      //console.log("Up Key Pressed")
+      //console.log("Up Key Pressed")
+      // if id === suggestion-item than focus cycles up, we decrement but focus on input if focus is on item(0)
+      if (id === 'suggestion-item') {
+        //console.log("SUGGESTION ITEM")
+        // use state.suggestionElementIndex to cycle selections
+        var index = this.state.suggestionElementIndex; // if on the first suggestion focus on input
+
+        if (index === 0) document.getElementById('typeahead-input').focus();else {
+          // focus is on a suggestion element
+          // decrement index and cycle selection upward
+          index--; // set in state
+
+          this.setState({
+            suggestionElementIndex: index
+          }); // set focus to first element in suggestions list if suggestions has content
+
+          if (this.state.suggestions.length) this.state.suggestionElements[this.state.suggestionElementIndex].focus();
+        }
+      } else if (id === 'typeahead-input') {
+        // focus is on input
+        //console.log("TYPEAHEAD")
+        // reset suggestions element index in state to 0
+        this.setState({
+          suggestionElementIndex: this.state.suggestionElements.length - 1
+        }); // set focus to first element in suggestions list if suggestions has content
+
+        if (this.state.suggestions.length) this.state.suggestionElements[this.state.suggestionElementIndex].focus();
+      } else // set focus to the input                
+        document.getElementById('typeahead-input').focus();
+    } else if (e.key === 'ArrowDown') {
+      //console.log("DOWN Key Pressed")
+      // if id === suggestion-item than focus is already on a list item; so we increment
+      if (id === 'suggestion-item') {
+        //console.log("SUGGESTION ITEM")
+        // use state.suggestionElementIndex to cycle selections
+        var index = this.state.suggestionElementIndex; // increment index and cycle if at state.suggestionElements length
+
+        index++;
+        if (index >= this.state.suggestionElements.length) index = 0; // save to state
+
+        this.setState({
+          suggestionElementIndex: index
+        }); // set focus to element at new index
+
+        this.state.suggestionElements[this.state.suggestionElementIndex].focus();
+      } else if (id === 'typeahead-input') {
+        // focus is on input
+        //console.log("TYPEAHEAD")
+        // reset suggestions element index in state to 0
+        this.setState({
+          suggestionElementIndex: 0
+        }); // set focus to first element in suggestions list if suggestions has content
+
+        if (this.state.suggestions.length) this.state.suggestionElements[this.state.suggestionElementIndex].focus();
+      } else // set focus to the input if focus is somewhere else on the page
+        document.getElementById('typeahead-input').focus();
+    }
+  }
+
+  handleSelection(e) {
+    //console.log("SHOWING COLOR IN handleSelection")
+    //console.log(e.target.innerHTML)
+    // clear out the bold JSX from string before putting it in the input
+    var value = this.removeHtmlTags(e.target.innerHTML); // set sate value to innerHTML of selection and reset suggestions
+
+    this.setState({
+      value,
+      suggestions: [],
+      themeColor: value
+    });
+  }
+
+  removeHtmlTags(str) {
+    return str.replace('<b>', '').replace('</b>', '').replace('<div>', '').replace('</div>', '');
+  }
+
+  boldChars(str, sub) {
+    /** Custom Type Checking Block /**/
+    if (!str || !typeof str === 'string' || !sub || !typeof sub === 'string') return Error("Custom Type Check by Applicant: Joseph M. Davison :: method boldChars in typeahead_search.js :: Improper Argument Used! Please use type 'string"); // match with case insensitivity
+
+    var index = str.toLowerCase().indexOf(sub.toLowerCase()); // cancel method if no substring is found
+
+    if (index === -1) return; // slice up string to bold the matching portion
+
+    var start = str.slice(0, index);
+    var mid = str.slice(index, index + sub.length);
+    var end = str.slice(index + sub.length, str.length); // construct and return JSX
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 245,
+        columnNumber: 13
+      }
+    }, start, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 247,
+        columnNumber: 17
+      }
+    }, mid), end);
+  }
+
+  xhrPromise(url) {
+    return new Promise((resolve, reject) => {
+      // create an XHR
+      var request = new XMLHttpRequest();
+      request.open('post', url, true); // set general request headers, using urlencoded RESTful header
+
+      request.onreadystatechange = () => {
+        //console.log("PROCESSING RESPONSE")
+        if (request.readyState === 4 && request.status === 200) {
+          //console.log(JSON.parse(request.response))
+          resolve(JSON.parse(request.response));
+        }
+      }; // send XHR
+
+
+      request.send();
+    });
+  }
+
+  dictionaryLookup(word) {
+    // end point for dictionary.com
+    const endPoint = 'https://www.dictionaryapi.com/api/v3/references/collegiate/json/' + word + '?key=805ab663-44f1-4bc9-a1ff-c3b2f743d1fb'; // returns XHR Promise
+
+    return this.xhrPromise(endPoint).then(data => {
+      console.log("dictionaryLookup"); //console.log(data)
+    });
+  }
+
+  thesaurusSuggestions(word) {
+    // end point for dictionary.com thesaurus
+    const thesExp = 'https://www.dictionaryapi.com/api/v3/references/thesaurus/json/' + word + '?key=35c898d4-6518-4c3c-8289-91eb8ec78c8e'; // returns XHR Promise
+
+    return this.xhrPromise(thesExp).then(arrThesaurus => {
+      console.log("thesaurusSuggestions"); //console.log(arrThesaurus)
+
+      return arrThesaurus;
+    });
+  }
+
+  componentWillMount() {
+    /** add doument event listeners  before render /**/
+    document.addEventListener('keydown', e => {
+      this.handleKeyPress(e);
+    });
+  }
+
+  componentWillUnmount() {
+    /** remove doument event listeners  before de-render /**/
+    document.removeEventListener('keydown', e => {
+      this.handleKeyPress(e);
+    });
+  }
+
+  render() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "typeahead-component",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 314,
+        columnNumber: 13
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_menu_menu__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 317,
+        columnNumber: 17
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "typeahead-header",
+      style: {
+        color: this.state.themeColor
+      },
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 320,
+        columnNumber: 17
+      }
+    }, "Blockchains TypeAhead"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "typeahead-img",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 327,
+        columnNumber: 17
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+      className: "typeahead-section",
+      onBlur: this.handleBlur,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 332,
+        columnNumber: 17
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tyoeahead_input__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      handleChange: this.handleChange,
+      handleFocus: this.handleFocus,
+      value: this.state.value,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 336,
+        columnNumber: 21
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_suggestion_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      boldChars: this.boldChars,
+      handleSelection: this.handleSelection,
+      suggestions: this.state.suggestions,
+      value: this.state.value,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 341,
+        columnNumber: 21
+      }
+    })));
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (TypeAhead);
+
+/***/ }),
+
+/***/ 1:
+/*!**************************************************************************************************************!*\
+  !*** multi (webpack)/hot/dev-server.js ./node_modules/react-dev-utils/webpackHotDevClient.js ./src/index.js ***!
+  \**************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! C:\Users\jojac\Documents\webworks\front-end-applicant-project\node_modules\webpack\hot\dev-server.js */"./node_modules/webpack/hot/dev-server.js");
+__webpack_require__(/*! C:\Users\jojac\Documents\webworks\front-end-applicant-project\node_modules\react-dev-utils\webpackHotDevClient.js */"./node_modules/react-dev-utils/webpackHotDevClient.js");
+module.exports = __webpack_require__(/*! C:\Users\jojac\Documents\webworks\front-end-applicant-project\src\index.js */"./src/index.js");
+
+
+/***/ })
+
+},[[1,"runtime-main",1]]]);
+//# sourceMappingURL=main.chunk.js.map

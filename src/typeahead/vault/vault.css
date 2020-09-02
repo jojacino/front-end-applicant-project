@@ -1,0 +1,93 @@
+
+.vault-container, .vault-door {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+
+    border: solid orange;
+}
+
+.vault-container {
+    padding: 0;
+    margin: 0;
+}
+
+.vault-door {
+    top: 0px;
+    background: url(../../media/images/vault.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: top;
+
+    transition: top .5s ease-out;
+    -webkit-transition: top .5s ease-out;
+    -moz-transition: top .5s ease-out;
+    -o-transition: top .5s ease-out;
+}
+
+.vault-door-open {
+    top: -400px;
+    transition: top .75s ease-out;
+    -webkit-transition: top .775s ease-in;
+    -moz-transition: top 75s ease-in;
+    -o-transition: top .75s ease-in;
+}
+
+.blockchains-text {
+    position: absolute;
+    top: 25px;
+    left: 0px;
+    height: 400px;
+    width: 400px;
+    background: url(../../media/images/blockchains-text.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: top;
+    border: solid red;
+}
+
+.wheel {
+    position: fixed;
+    top: 25px;
+    height: 400px;
+    width: 400px;
+    background: url(../../media/images/wheel.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: top;
+    border: solid yellow;
+}
+
+.key {
+    position: absolute;
+    top: 100px;
+    left: 10px;
+    background: url(../../media/images/key.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top;
+    z-index: 9;
+    height: 80px;
+    width: 53px;
+    cursor: pointer;
+    border: solid green;
+}
+
+@media only screen and (min-width: 300px) {
+}
+
+@media only screen and (min-width: 400px) {
+}
+
+@media only screen and (min-width: 500px) {
+}
+
+@media only screen and (min-width: 700px) {
+}

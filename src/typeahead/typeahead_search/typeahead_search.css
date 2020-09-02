@@ -1,0 +1,103 @@
+
+.typeahead-component {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    width: 100%;
+}
+
+.typeahead-section {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.typeahead-input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    width: 100%;
+    max-width: 800px;
+    border: solid 2px var(--color-teal);
+    border-bottom: solid 15px var(--color-teal);
+    border-radius: 9px;
+    overflow: hidden;
+}
+
+.typeahead-header {
+
+    text-align: center;
+
+    font-family: var(--font-blockchains);
+    font-size: 36pt;
+    color: var(--color-teal);
+
+    margin-top: 15px;
+}
+
+.typeahead-input {
+    height: 30px;
+    width: 100%;
+    font-family: var(--font-blockchains);
+    font-size: 14pt;
+    color: var(--color-black);
+    text-align: center;
+}
+
+.suggestions-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 100%;
+    max-width: 800px;
+}
+.suggestions-list {
+    display: flex;
+    height: 30px;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+.suggestion-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-shiney-black);
+    font-size: 14pt;
+    border-bottom: solid thin var(--color-shiney-black);
+    height: 30px;
+    width: 100%;
+    max-width: 780px;
+    padding: 9px;
+    cursor: pointer;
+}
+    .suggestion-item:hover {
+        background-color: var(--color-shiney-black);
+        color: var(--color-off-white);
+    }
+    .suggestion-item:focus {
+        background-color: black;
+        color: var(--color-off-white);
+        outline: none;
+    }
+
+@media only screen and (min-width: 300px) {
+}
+
+@media only screen and (min-width: 400px) {
+}
+
+@media only screen and (min-width: 500px) {
+}
+
+@media only screen and (min-width: 700px) {
+}

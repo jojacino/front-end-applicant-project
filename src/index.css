@@ -1,0 +1,36 @@
+:root {
+    --font-blockchains: Galaxie Polaris Condensed; /**/
+    --font-blockchains-sup: 'Puritan', sans-serif;
+    --font-blockchains-alt: 'Arial', sans-serif;
+    --font-serif: 100% Open Sans, sans-serif;
+    --color-teal: #009999;
+    --color-black: #333333;
+    --color-shiney-black: #3F3F3F;
+    --color-dark-gray: #666666;
+    --color-med-gray: #999999;
+    --color-light-gray: #CCCCCC;
+    --color-off-white: #FFFFFF;
+    --color-rgba-teal: rgba(0, 133, 161, 1);
+    --color-rgba-black: rgba(67, 67, 69, 1);
+    --color-rgba-dark-gray: rgba(103, 104, 107, 1);
+    --color-rgba-med-gray: rgba(140, 142, 144, 1);
+    --color-rgba-light-gray: rgba(228, 229, 230, 1);
+    --color-rgba-off-white: rgba(239, 239, 244, 1);
+}
+
+body {
+    background: url(./media/images/watermark.png);
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    padding: 0;
+    margin: 0;
+}
+
+input[ type=text ] {
+    outline: none;
+    border: solid thin var(--color-teal);
+    box-shadow: 0 2px 0 0 var(--color-teal);
+    border-radius: 9px;
+    text-transform: none;
+}
