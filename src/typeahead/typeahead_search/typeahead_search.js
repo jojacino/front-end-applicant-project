@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import './typeahead_search.css'
 
 // paired components
-import Vault from '../vault/vault'
+import VaultDoor from './vault_door'
 import Menu from '../menu/menu'
 import TypeAheadInput from './tyoeahead_input'
 import SuggestionContainer from './suggestion_container'
@@ -18,9 +18,10 @@ class TypeAhead extends Component {
             value:  '', 
             list: this.props.colorsList || [],
             suggestions: [],
-            themeColor: 'var(--color-teal)',
+            themeColor: 'var(--color-light-gray)',
             suggestionElements: document.getElementsByClassName('suggestion-item'),
-            suggestionElementIndex: 0
+            suggestionElementIndex: 0,
+            vaultIs: 'closed'
         }
 
         this.handleBlur = this.handleBlur.bind(this)
@@ -28,6 +29,9 @@ class TypeAhead extends Component {
         this.handleFocus = this.handleFocus.bind(this)
         this.handleKeyPress = this.handleKeyPress.bind(this)
         this.handleSelection = this.handleSelection.bind(this)
+
+        this.handleVaultMouseEnter = this.handleVaultMouseEnter.bind(this)
+        this.handleVaultMouseLeave = this.handleVaultMouseLeave.bind(this)
     }
 
     addToList(item) {
@@ -41,6 +45,16 @@ class TypeAhead extends Component {
         this.setState({ list })
     }
 
+    handleVaultMouseEnter(e) {
+        this.setState({ vaultIs: 'open' })
+    }
+    handleVaultMouseLeave(e) {
+        this.setState({ vaultIs: 'closed' })
+    }
+
+    /**
+     *  TypeAhead Search Box Section
+     */
     handleChange(e) {
 
         var value = e.target.value.replace( /[^a-zA-Z0-9\s]/g, '')
@@ -81,7 +95,6 @@ class TypeAhead extends Component {
     handleKeyPress(e) {
       //console("handleKeyPress")
        //console.log(e)
-
 
         // get element with focus
         var focus = document.activeElement
@@ -273,7 +286,7 @@ class TypeAhead extends Component {
         })
 
     }
-
+    // text methods
     removeHtmlTags(str) {
 
         return str.replace('<b>', '').replace('</b>', '').replace('<div>', '').replace('</div>', '')
@@ -300,7 +313,7 @@ class TypeAhead extends Component {
             </div>
         )
     }
-
+    // ajax methos
     xhrPromise(url) {
         return new Promise((resolve, reject) => {
 
@@ -362,48 +375,51 @@ class TypeAhead extends Component {
     render() {
 
         return (
-            <div className="typeahead-component">
+            <div
+                onMouseLeave={this.handleVaultMouseLeave}
+                className="typeahead-component"
+                style={{ height: window.innerHeight }}>
 
-                {/** Vault Door and Lock Section /**/}
-                <Vault>
+                {/** Header Section /**/}
+                <div
+                    className="typeahead-header"
+                    style={{ color: this.state.themeColor }}>
+                    Blockchains TypeAhead
+                </div>
 
-                    {/** Menu Section /**/}
-                    <Menu />
+                {/** Menu Section /**/}
+                <Menu />
 
-                    {/** Header Section /**/}
-                    <div
-                        className="typeahead-header"
-                        style={{ color: this.state.themeColor }}>
-                        Blockchains TypeAhead
-                    </div>
+                {/** Image Section /**/}
+                <div
+                    className="typeahead-img">
+                </div>
 
-                    {/** Image Section /**/}
-                    <div
-                        className="typeahead-img">
-                    </div>
+                {/** TypeAhead Section /**/}
+                <section
+                    className="typeahead-section"
+                    onBlur={this.handleBlur}>
 
-                    {/** TypeAhead Section /**/}
-                    <section
-                        className="typeahead-section"
-                        onBlur={this.handleBlur}>
+                    <TypeAheadInput
+                        handleChange={this.handleChange}
+                        handleFocus={this.handleFocus}
+                        themeColor={this.state.themeColor}
+                        value={this.state.value} />
 
-                        <TypeAheadInput
-                            handleChange={this.handleChange}
-                            handleFocus={this.handleFocus}
-                            themeColor={this.state.themeColor}
-                            value={this.state.value} />
+                    <SuggestionContainer
+                        boldChars={this.boldChars}
+                        handleSelection={this.handleSelection}
+                        suggestions={this.state.suggestions}
+                        value={this.state.value} />
 
-                        <SuggestionContainer
-                            boldChars={this.boldChars}
-                            handleSelection={this.handleSelection}
-                            suggestions={this.state.suggestions}
-                            value={this.state.value} />
+                </section>
 
-                    </section>
-
-                </Vault>
-
+                <VaultDoor
+                    handleVaultMouseEnter={this.handleVaultMouseEnter}
+                    handleVaultMouseLeave={this.handleVaultMouseLeave}
+                    vaultIs={ this.state.vaultIs } />
                 { /** End of Component  /**/}
+
             </div>
         )
     }

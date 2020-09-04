@@ -4,8 +4,40 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: auto;
+    height: 100%;
+}
+
+.vault-door {
+    top: 0px;
+    position: fixed;
+    height: 100%;
     width: 100%;
+    background: url(../../media/images/bg_repeat.png);
+    background-size: contain;
+    background-position: top;
+    transition: top 1s ease-out;
+    -moz-transition: top 1s ease-out;
+    -webkit-transition: top 1s ease-out;
+    -o-transition: top 1s ease-out;
+}
+
+.vault-door-open {
+    top: -2000px;
+    transition: top 1s ease-in;
+    -moz-transition: top 1s ease-in;
+    -webkit-transition: top 1s ease-in;
+    -o-transition: top 1s ease-in;
+}
+
+.vault-face {
+    top: 0px;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: url(../../media/images/vault-door.png);
+    background-size: 100%;
+    background-position: top;
+    background-repeat: no-repeat;
 }
 
 .typeahead-section {
@@ -30,13 +62,14 @@
 }
 
 .typeahead-header {
-
+    position: absolute;
+    top: 25px;
     text-align: center;
-
+    text-shadow: 1px 1px 0 #CCC, -1px -1px 2px #000, 0 0 6px white;
     font-family: var(--font-blockchains);
-    font-size: 36pt;
-    color: var(--color-teal);
-
+    font-size: 18pt;
+    font-weight: bold;
+    text-transform: uppercase;
     margin-top: 15px;
 }
 
@@ -44,7 +77,7 @@
     height: 30px;
     width: 100%;
     font-family: var(--font-blockchains);
-    font-size: 14pt;
+    font-size: 18pt;
     color: var(--color-black);
     text-align: center;
 }
@@ -79,6 +112,7 @@
     max-width: 780px;
     padding: 9px;
     cursor: pointer;
+    background-color: rgba(255,255,255,0.65);
 }
     .suggestion-item:hover {
         background-color: var(--color-shiney-black);
@@ -90,14 +124,50 @@
         outline: none;
     }
 
+@media only screen and (min-width: 270px) {
+    .typeahead-header {
+        font-size: 22pt;
+    }
+}
+
 @media only screen and (min-width: 300px) {
+    .typeahead-header {
+        font-size: 26pt;
+    }
 }
 
 @media only screen and (min-width: 400px) {
+    .typeahead-header {
+        font-size: 32pt;
+    }
 }
 
 @media only screen and (min-width: 500px) {
+    .typeahead-header {
+        font-size: 38pt;
+    }
 }
 
 @media only screen and (min-width: 700px) {
+    .typeahead-header {
+        font-size: 44pt;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    .typeahead-header {
+        font-size: 54pt;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    .typeahead-header {
+        font-size: 66pt;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .typeahead-header {
+        font-size: 74pt;
+    }
 }

@@ -1,29 +1,22 @@
 :root {
     --font-blockchains: Galaxie Polaris Condensed; /**/
-    --font-blockchains-sup: 'Puritan', sans-serif;
-    --font-blockchains-alt: 'Arial', sans-serif;
+    --font-blockchains-sup: 'Arial', sans-serif;
     --font-serif: 100% Open Sans, sans-serif;
-    --color-teal: #009999;
-    --color-black: #333333;
     --color-shiney-black: #3F3F3F;
-    --color-dark-gray: #666666;
-    --color-med-gray: #999999;
-    --color-light-gray: #CCCCCC;
-    --color-off-white: #FFFFFF;
-    --color-rgba-teal: rgba(0, 133, 161, 1);
-    --color-rgba-black: rgba(67, 67, 69, 1);
-    --color-rgba-dark-gray: rgba(103, 104, 107, 1);
-    --color-rgba-med-gray: rgba(140, 142, 144, 1);
-    --color-rgba-light-gray: rgba(228, 229, 230, 1);
-    --color-rgba-off-white: rgba(239, 239, 244, 1);
+    --color-teal: rgba(0, 133, 161, 1);
+    --color-black: rgba(67, 67, 69, 1);
+    --color-dark-gray: rgba(103, 104, 107, 1);
+    --color-med-gray: rgba(140, 142, 144, 1);
+    --color-light-gray: rgba(228, 229, 230, 1);
+    --color-off-white: rgba(239, 239, 244, 1);
 }
 
 body {
-    background: url(./media/images/watermark.png);
-    background-size: cover;
+    background: url(./media/images/logo-transparent.png) no-repeat, url(./media/images/bg_repeat.png);
+    background-size: contain;
     background-position: top;
-    background-repeat: no-repeat;
-    padding: 0;
+    
+    padding: 25px;
     margin: 0;
 }
 
