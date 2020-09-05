@@ -3,41 +3,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     height: 100%;
-}
-
-.vault-door {
-    top: 0px;
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    background: url(../../media/images/bg_repeat.png);
-    background-size: contain;
-    background-position: top;
-    transition: top 1s ease-out;
-    -moz-transition: top 1s ease-out;
-    -webkit-transition: top 1s ease-out;
-    -o-transition: top 1s ease-out;
-}
-
-.vault-door-open {
-    top: -2000px;
-    transition: top 1s ease-in;
-    -moz-transition: top 1s ease-in;
-    -webkit-transition: top 1s ease-in;
-    -o-transition: top 1s ease-in;
-}
-
-.vault-face {
-    top: 0px;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background: url(../../media/images/vault-door.png);
-    background-size: 100%;
-    background-position: top;
-    background-repeat: no-repeat;
+    padding: 6px;
 }
 
 .typeahead-section {
@@ -47,13 +15,23 @@
     flex-direction: column;
 }
 
+.typeahead-header {
+    text-align: center;
+    text-shadow: -1px 0 1px #666, 1px 0 1px #666, 0 2px 1px #333;
+    font-family: var(--font-blockchains);
+    font-size: 9pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 35px;
+}
+
 .typeahead-input-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: auto;
-    width: 100%;
+    width: 90%;
     max-width: 800px;
     border: solid 2px var(--color-teal);
     border-bottom: solid 15px var(--color-teal);
@@ -61,113 +39,100 @@
     overflow: hidden;
 }
 
-.typeahead-header {
-    position: absolute;
-    top: 25px;
-    text-align: center;
-    text-shadow: 1px 1px 0 #CCC, -1px -1px 2px #000, 0 0 6px white;
-    font-family: var(--font-blockchains);
-    font-size: 18pt;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-top: 15px;
-}
-
 .typeahead-input {
     height: 30px;
     width: 100%;
     font-family: var(--font-blockchains);
-    font-size: 18pt;
+    font-size: 9pt;
     color: var(--color-black);
     text-align: center;
 }
 
-.suggestions-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 30px;
-    width: 100%;
-    max-width: 800px;
-}
-.suggestions-list {
-    display: flex;
-    height: 30px;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-}
-.suggestion-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-shiney-black);
-    font-size: 14pt;
-    border-bottom: solid thin var(--color-shiney-black);
-    height: 30px;
-    width: 100%;
-    max-width: 780px;
-    padding: 9px;
-    cursor: pointer;
-    background-color: rgba(255,255,255,0.65);
-}
-    .suggestion-item:hover {
-        background-color: var(--color-shiney-black);
-        color: var(--color-off-white);
+@media screen and (min-device-width: 150px) {
+    .typeahead-header {
+        font-size: 13pt;
     }
-    .suggestion-item:focus {
-        background-color: black;
-        color: var(--color-off-white);
-        outline: none;
+    .typeahead-input-container {
+        width: 85%;
     }
+}
 
-@media only screen and (min-width: 270px) {
+@media screen and (min-device-width: 200px) {
+    .typeahead-header {
+        font-size: 18pt;
+    }
+    .typeahead-input-container {
+        width: 80%;
+    }
+}
+
+@media screen and (min-device-width: 300px) {
     .typeahead-header {
         font-size: 22pt;
     }
-}
-
-@media only screen and (min-width: 300px) {
-    .typeahead-header {
-        font-size: 26pt;
+    .typeahead-input-container {
+        width: 75%;
     }
 }
 
-@media only screen and (min-width: 400px) {
+@media screen and (min-device-width: 400px) {
+    .typeahead-header {
+        font-size: 26pt;
+    }   
+    .typeahead-input-container {
+        width: 73%;
+    }
+}
+
+@media screen and (min-device-width: 500px) {
     .typeahead-header {
         font-size: 32pt;
     }
+
+    .typeahead-input-container {
+        width: 70%;
+    }
 }
 
-@media only screen and (min-width: 500px) {
+@media screen and (min-device-width: 600px) {
     .typeahead-header {
         font-size: 38pt;
     }
 }
 
-@media only screen and (min-width: 700px) {
+@media screen and (min-device-width: 700px) {
     .typeahead-header {
         font-size: 44pt;
     }
 }
 
-@media only screen and (min-width: 800px) {
+@media screen and (min-device-width: 800px) {
     .typeahead-header {
-        font-size: 54pt;
+        font-size: 48pt;
     }
 }
 
-@media only screen and (min-width: 1000px) {
+
+@media screen and (min-device-width: 900px) {
     .typeahead-header {
-        font-size: 66pt;
+        font-size: 56pt;
     }
 }
 
-@media only screen and (min-width: 1200px) {
+@media screen and (min-device-width: 1000px) {
     .typeahead-header {
-        font-size: 74pt;
+        font-size: 60pt;
+    }
+}
+
+@media screen and (min-device-width: 1100px) {
+    .typeahead-header {
+        font-size: 88pt;
+    }
+}
+
+@media screen and (min-device-width: 1600px) {
+    .typeahead-header {
+        margin: 35px 200px 0 200px;
     }
 }

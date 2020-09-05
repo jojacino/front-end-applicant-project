@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 
 // Exported Component
 class TypeAheadInput extends Component {
-
     render() {
         return (
             <div

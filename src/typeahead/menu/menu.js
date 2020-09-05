@@ -13,6 +13,16 @@ class Menu extends Component {
     handleClick(e) {
 
         this.setState({ selectedButton: e.target.innerHTML })
+
+        if (e.target.innerHTML === 'Colors') {
+
+            this.props.useColorMode()
+        }
+        else if (e.target.innerHTML === 'Dictionary') {
+
+            this.props.useDictionaryMode()
+        }
+
     }
 
     render() {

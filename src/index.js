@@ -157,6 +157,6 @@ const colorsList = [
 ]
 
 ReactDOM.render(
-    <TypeAhead colorsList={colorsList} />,
+    <TypeAhead receivedList={colorsList} />,
     document.getElementById('root')
 )

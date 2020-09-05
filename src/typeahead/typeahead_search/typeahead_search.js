@@ -8,6 +8,7 @@ import VaultDoor from './vault_door'
 import Menu from '../menu/menu'
 import TypeAheadInput from './tyoeahead_input'
 import SuggestionContainer from './suggestion_container'
+import DictionaryContainer from './dictionary_container'
 
 // Exported Component
 class TypeAhead extends Component {
@@ -16,35 +17,52 @@ class TypeAhead extends Component {
 
         this.state = {
             value:  '', 
-            list: this.props.colorsList || [],
+            list: this.props.receivedList || [],
             suggestions: [],
+            dictionaryObjects: [],
             themeColor: 'var(--color-light-gray)',
+            defaultColor: 'var(--color-light-gray)',
             suggestionElements: document.getElementsByClassName('suggestion-item'),
             suggestionElementIndex: 0,
-            vaultIs: 'closed'
+            vaultIs: 'closed',
+            mode: 'color'
         }
 
+        // binding for TypeAhead components
         this.handleBlur = this.handleBlur.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleFocus = this.handleFocus.bind(this)
         this.handleKeyPress = this.handleKeyPress.bind(this)
         this.handleSelection = this.handleSelection.bind(this)
 
+        // binding for vault door
         this.handleVaultMouseEnter = this.handleVaultMouseEnter.bind(this)
         this.handleVaultMouseLeave = this.handleVaultMouseLeave.bind(this)
+
+        // binding for mode menu
+        this.useColorMode = this.useColorMode.bind(this)
+        this.useDictionaryMode = this.useDictionaryMode.bind(this)
+
     }
 
-    addToList(item) {
-        var list = [...this.state.list]
-        list.push(item)
-        this.setState({ list })
+    /**
+     * Suggestion List Update Methods
+     */
+    useColorMode() {
+        //console.log("ENTERING COLOR MODE")
+        // set list to props recieved and mode to 'color': reset dictionaryObjects
+        this.setState({ list: this.props.receivedList, mode: 'color' , dictionaryObjects: [] })
     }
-    removeFromList(item) {
-        var list = [...this.state.list]
-        list.splice(list.indexOf(item), 1)
-        this.setState({ list })
+    useDictionaryMode() {
+        //console.log("ENTERING DICTIONARY MODE")
+        // reset list, set mode to 'dictionary'
+        this.setState({ list: [], mode: 'dictionary' })
+
     }
 
+    /**
+     *  Simple Animation
+     */
     handleVaultMouseEnter(e) {
         this.setState({ vaultIs: 'open' })
     }
@@ -57,21 +75,75 @@ class TypeAhead extends Component {
      */
     handleChange(e) {
 
-        var value = e.target.value.replace( /[^a-zA-Z0-9\s]/g, '')
+        //console.log(this.state.mode)
+
+        var value = e.target.value.replace(/[^a-zA-Z0-9\s]/g, '')
 
         // if input value get filtered suggestions / sorted and match to input
         if (value.length) {
 
-            // match non-case-specificly to suggestions
-            var suggestions = this.state.list.sort().filter(item => item.toLowerCase().match(value.toLowerCase()))
+            /** check the mode; if it is dictionary get thesaurus help for the word */
+            if (this.state.mode === 'dictionary') {
 
-            // set new input display value and suggestions
-            this.setState({ suggestions, value })
-         
+                this.thesaurusSuggestions(e.target.value)
+                    .then(thesaurus => {
+
+                        //console.log("SHOWING LIVE THESAURUS")
+                        //console.log(thesaurus)
+
+                        // the xhr has returned some data
+                        if (thesaurus.length) {
+
+                            // thesaurs has returned research on possible suggestions
+                            if (thesaurus[0] instanceof Object) {
+                                //console.log("SHOWING OBJECT 0")
+                                //console.log(thesaurus[0])
+
+                                var list = thesaurus.map(obj => {
+
+                                    return obj.hwi.hw
+                                })
+
+                                //console.log("SHOWING LIST OF OBJ RETURNS")
+                                //console.log(list)
+
+                                // match non-case-specificly to suggestions
+                                var suggestions = list.sort().filter(item => item.toLowerCase().match(value.toLowerCase()))
+
+                                // set new input display value list and suggestions
+                                this.setState({ list, suggestions })
+                            }
+                            else if (typeof (thesaurus[0]) === 'string') {
+                                //console.log("SHOWING STRING 0")
+                                //console.log(thesaurus[0])
+
+                                // build the list
+                                var list = [...thesaurus]
+
+                                // match non-case-specificly to suggestions
+                                var suggestions = list.sort().filter(item => item.toLowerCase().match(value.toLowerCase()))
+
+                                // set new input display value, list, and suggestions
+                                this.setState({ list, suggestions })
+                            }
+                        }
+                    })
+            }
+            else if (this.state.mode === 'color') {
+
+                // match non-case-specificly to suggestions
+                var suggestions = this.state.list.sort().filter(item => item.toLowerCase().match(value.toLowerCase()))
+
+                // set new input display value and suggestions
+                this.setState({ suggestions })
+
+            }
+
+            // set value as you type
+            this.setState({ value })
         }
-        else // clear suggestions if no match
+        else // clear suggestions and value on select if no reason or match
             this.setState({ suggestions: [], value: '' })
-
     } 
     handleFocus(e) {
         e.preventDefault()
@@ -93,8 +165,8 @@ class TypeAhead extends Component {
 
     }
     handleKeyPress(e) {
-      //console("handleKeyPress")
-       //console.log(e)
+        //console.log("handleKeyPress")
+        //console.log(e)
 
         // get element with focus
         var focus = document.activeElement
@@ -140,16 +212,27 @@ class TypeAhead extends Component {
 
         }// DOWN TAB
         if (e.key === 'Enter') {
-           //console("Enter Key Pressed")
+            console.log("Enter Key Pressed")
 
+            // set memory for the final value
             var value
+
+            // what if focus is on the input
             if (id === 'typeahead-input') {
 
-                // reset color if input is blank or only space characters
+                // reset input if input is blank or only space characters
                 if (e.target.value === '' || e.target.value.match(/^[\s]/g)) {
 
-                    // set state themeColor to var(--color-teal)
-                    this.setState({ themeColor: 'var(--color-teal)' })
+                    if (this.state.mode === 'color') {
+
+                        // set state themeColor to default
+                        this.setState({ value: '', suggestions: [], themeColor: this.state.defaultColor })
+                    }
+                    else if (this.state.mode === 'dictionary') {
+
+                        // reset state value, suggestions, and list
+                        this.setState({ value: '', suggestions: [], list: [] })
+                    }
 
                     // clear empty input
                     e.target.value = ''
@@ -157,28 +240,49 @@ class TypeAhead extends Component {
                     // exit
                     return
                 }
+                else { // there is a value besides only space charsj, focus is on input, Enter key pressed
 
-                // set the value of input to matching value in list on pressing enter inside the input
-                value = this.state.suggestions.find(item => item.toLowerCase() === focus.value.toLowerCase())
+                    // set the value of input to matching value in list on pressing enter inside the input
+                    value = this.state.suggestions.find(item => item.toLowerCase() === focus.value.toLowerCase())
 
-                // cancle actions if input value is not found in suggestions list
-                if(!value) return
+                    // cancle actions if input value is not found in suggestions list
+                    if (!value) return // do nothing
+                    else {
+
+                        // look up the word in the dictionary
+                        this.dictionaryLookup(value)
+                    }
+                } 
             }
-            else {
+            else if (id === 'suggestion-item') {
+                // focus is on a suggestion item, and  the Enter key was pressed
 
-                // clear out the bold JSX from string before putting it in the input
+                // clear out the bold JSX from string before putting the suggestion's text in the input
                 value = this.removeHtmlTags(e.target.innerHTML)
-            }
 
-            // set sate value to innerHTML of selection
-            this.setState({
-                value,
-                themeColor: value
-            })
+                // check which mode we are in
+                if (this.state.mode === 'color') { // MODE IS COLOR
+
+                    // set sate value to innerHTML of selection
+                    this.setState({
+                        value,
+                        themeColor: value
+                    })
+                }
+                else if (this.state.mode === 'dictionary') { // MODE IS DICTIONARY
+
+                    // reset state value, suggestions, and list
+                    this.setState({ value, suggestions: [], list: [], dictionaryObjects: [] })
+
+                    // look up the word in the dictionary
+                    this.dictionaryLookup(value)
+                }
+            }
 
             // set the focus to the input again
             document.getElementById('typeahead-input').focus()
-        }
+
+        }// ENTER KEY
         else if (e.key === 'Escape') {
            //console("Escape Key Pressed")
 
@@ -192,7 +296,7 @@ class TypeAhead extends Component {
                 this.setState({ suggestions: [] })
 
             }
-        }
+        }// ESCAPE KEY
         else if (e.key === 'ArrowUp') {
            //console("Up Key Pressed")
 
@@ -233,7 +337,7 @@ class TypeAhead extends Component {
             }
             else // set focus to the input                
                 document.getElementById('typeahead-input').focus()
-        }
+        }// UP ARROW
         else if (e.key === 'ArrowDown') {
            //console("DOWN Key Pressed")
 
@@ -268,7 +372,7 @@ class TypeAhead extends Component {
             }
             else // set focus to the input if focus is somewhere else on the page
                 document.getElementById('typeahead-input').focus()
-        }
+        }// DOWN ARROW
     }
     handleSelection(e) {
 
@@ -278,14 +382,29 @@ class TypeAhead extends Component {
         // clear out the bold JSX from string before putting it in the input
         var value = this.removeHtmlTags(e.target.innerHTML)
 
-        // set sate value to innerHTML of selection and reset suggestions
-        this.setState({
-            value,
-            suggestions: [],
-            themeColor: value
-        })
+        if (this.state.mode === 'color') {
 
+            // set sate value to innerHTML of selection and reset suggestions
+            this.setState({
+                value,
+                suggestions: [],
+                themeColor: value
+            })
+        }
+        else if (this.state.mode === 'dictionary') {
+
+            // set sate value to innerHTML of selection and reset suggestions, and dictionaryObjs before new lookup
+            this.setState({
+                value,
+                suggestions: [],
+                dictionaryObjects: []
+            })
+
+            // look up the word in the dictionary
+            this.dictionaryLookup(value)
+        }
     }
+
     // text methods
     removeHtmlTags(str) {
 
@@ -313,6 +432,7 @@ class TypeAhead extends Component {
             </div>
         )
     }
+
     // ajax methos
     xhrPromise(url) {
         return new Promise((resolve, reject) => {
@@ -326,22 +446,43 @@ class TypeAhead extends Component {
                 //console.log("PROCESSING RESPONSE")
 
                 if (request.readyState === 4 && request.status === 200) {
-                    //console.log(JSON.parse(request.response))
-                    resolve(JSON.parse(request.response))
+
+                    // method for verifying valid JSON string
+                    function canJSON(str) {
+                        try {
+                            JSON.parse(str)
+                        } catch (e) {
+                            return false
+                        }
+                        return true
+                    }
+
+                    if (canJSON(request.response)) {
+                        //console.log(JSON.parse(request.response))
+                        resolve(JSON.parse(request.response))
+                    }
+                    else {
+                        resolve(request)
+                    }
                 }
             }
             // send XHR
             request.send()
         })
     }
-    dictionaryLookup(word) {
+    dictionaryLookup(value) {
         // end point for dictionary.com
-        const endPoint = 'https://www.dictionaryapi.com/api/v3/references/collegiate/json/' + word + '?key=805ab663-44f1-4bc9-a1ff-c3b2f743d1fb'
+        const endPoint = 'https://www.dictionaryapi.com/api/v3/references/collegiate/json/' + value + '?key=805ab663-44f1-4bc9-a1ff-c3b2f743d1fb'
         // returns XHR Promise
         return this.xhrPromise(endPoint)
-            .then(data => {
+            .then(dictionary => {
                //console.log("dictionaryLookup")
-                //console.log(data)
+
+                console.log("SHOWING DICTIONARY LOOKUP FOR: " + value)
+                console.log(dictionary)
+
+                if (dictionary.length)
+                    this.setState({ dictionaryObjects: [...dictionary] })
             })
     }
     thesaurusSuggestions(word) {
@@ -356,6 +497,7 @@ class TypeAhead extends Component {
             })
     }
 
+    // rendering methods
     componentDidMount() {
 
         /** add doument event listeners on render /**/
@@ -388,7 +530,10 @@ class TypeAhead extends Component {
                 </div>
 
                 {/** Menu Section /**/}
-                <Menu />
+                <Menu
+                    mode={this.state.mode}
+                    useColorMode={this.useColorMode}
+                    useDictionaryMode={this.useDictionaryMode} />
 
                 {/** Image Section /**/}
                 <div
@@ -411,6 +556,12 @@ class TypeAhead extends Component {
                         handleSelection={this.handleSelection}
                         suggestions={this.state.suggestions}
                         value={this.state.value} />
+
+                </section>
+
+                <section className="dictionary-definitions-section">
+
+                    <DictionaryContainer dictionary={ this.state.dictionaryObjects } />
 
                 </section>
 

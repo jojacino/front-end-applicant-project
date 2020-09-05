@@ -2,13 +2,6 @@ import React, { Component } from 'react'
 
 // Exported Component
 class SuggestionItem extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-
-        }
-    }
-
     render() {
         return (
             <div

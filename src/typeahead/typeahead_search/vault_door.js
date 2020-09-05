@@ -1,4 +1,5 @@
 import React from 'react'
+import './vault.css'
 
 // Exported Component
 function VaultDoor(props) {

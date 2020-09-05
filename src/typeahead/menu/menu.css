@@ -2,23 +2,24 @@
 .menu {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     height: 35px;
-    width: 100%;
-
-    margin: 50px;
+    width: 95%;
+    padding: 5px; 
+    margin: 50px 0;
 }
 
-.button {
+.button, .button-selected {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 35px;
     max-width: 400px;
     width: 100%;
+    font-size: 9pt;
     color: white;
-    padding: 3px;
-    margin: 5px;
+    margin: 0;
+    padding: 0;
     border: groove thin black;
     border-radius: 3px;
     background-color: var(--color-shiney-black);
@@ -31,16 +32,25 @@
 
 
 .button-selected {
-    max-width: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 35px;
-    width: 100%;
-    color: white;
-    padding: 3px;
-    margin: 5px;
-    border: ridge thin var(--color-shiney-black);
-    border-radius: 3px;
     background-color: var(--color-dark-gray);
+}
+
+@media only screen and (min-width: 150px) {
+
+    .menu {
+        width: 90%;
+    }
+    .button, .button-selected {
+        margin: 0 5px;
+    }
+}
+
+@media only screen and (min-width: 300px) {
+
+    .menu {
+        width: 85%;
+    }
+    .button, .button-selected {
+        margin: 0 15px;
+    }
 }

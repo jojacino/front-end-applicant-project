@@ -13,10 +13,9 @@
 
 body {
     background: url(./media/images/logo-transparent.png) no-repeat, url(./media/images/bg_repeat.png);
-    background-size: contain;
-    background-position: top;
-    
-    padding: 25px;
+    background-size: 100%;
+    background-position: center;
+    padding: 0;
     margin: 0;
 }
 

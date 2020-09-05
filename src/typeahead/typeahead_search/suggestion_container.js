@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './suggestions.css'
 
 import SuggestionItem from './suggestion_item'
 
