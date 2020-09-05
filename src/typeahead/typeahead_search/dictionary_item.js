@@ -6,18 +6,28 @@ class DictionaryItem extends Component {
 
         var lookup = this.props.lookup
 
+        console.log("SHOWING PROPS INSIDE DICTIONARY ITEM")
+        console.log(this.props)
+
         return (
             <div
                 tabIndex={this.props.tabIndex}
                 className="dictionary-item">
 
-                {console.log("SHOWING PROPS INSIDE DICTIONARY ITEM")}
-                {console.log(this.props) }
+                {/** Left Side Graphical **/}
+                <div className="dictionary-item-lable-bar"></div>
 
-                <div className="word">{this.props.lookup.hwi.hw}</div>
-                <div className="date">{this.props.lookup.date}</div>
-                <div className="definition">{this.props.lookup.hwi.hw}</div>
+                {/** Dictionary Lookup (Word) **/}
+                <div className="dictionary-info-container">
+                    {/** Left Side Graphical **/}
+                    <div className="dictionary-item-lable-tab"></div>
 
+                    <lable className="dictionary-info-lable">Dictionary Word:</lable>
+                    <div className="dictionary-info-header">{lookup.hwi.hw}</div>
+
+                </div>
+
+                
             </div>
         )
     }

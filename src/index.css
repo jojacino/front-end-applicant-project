@@ -1,6 +1,6 @@
 :root {
-    --font-blockchains: Galaxie Polaris Condensed; /**/
-    --font-blockchains-sup: 'Arial', sans-serif;
+    --font-blockchains: Galaxie Polaris Condensed; /* for $200 */
+    --font-menu: Galaxie Polaris Condensed Book;
     --font-serif: 100% Open Sans, sans-serif;
     --color-shiney-black: #3F3F3F;
     --color-teal: rgba(0, 133, 161, 1);
@@ -12,6 +12,7 @@
 }
 
 body {
+    font-family: var(--font-serif);
     background: url(./media/images/logo-transparent.png) no-repeat, url(./media/images/bg_repeat.png);
     background-size: 100%;
     background-position: center;

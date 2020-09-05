@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './dictionary.css'
 
 import DictionaryItem from './dictionary_item'
 
@@ -8,18 +9,16 @@ class DictionaryContainer extends Component {
     render() {
         return (
             < div className="dictionary-container" >
-                {/** TypeAhead Suggestions / AutoComplete Section /**/}
-                <div className="dictionary-list">
-                    {this.props.dictionary.map((obj, index) => {
+                {/** TypeAhead Dictionary Section /**/}
+                {this.props.dictionary.map((obj, index) => {
 
-                        return (
-                            <DictionaryItem
-                                key={'item:' + index}
-                                tabIndex={index / 50}
-                                lookup={obj} />
-                        )
-                    })}
-                </div>
+                    return (
+                        <DictionaryItem
+                            key={'item:' + index}
+                            tabIndex={index / 50}
+                            lookup={obj} />
+                    )
+                })}
             </div >
         )
     }
