@@ -57,7 +57,7 @@
     }
 }
 
-@media screen and (min-device-width: 200px) {
+@media screen and (min-width: 200px) {
     .typeahead-header {
         font-size: 18pt;
     }
@@ -66,7 +66,7 @@
     }
 }
 
-@media screen and (min-device-width: 300px) {
+@media screen and (min-width: 300px) {
     .typeahead-header {
         font-size: 22pt;
     }
@@ -75,7 +75,7 @@
     }
 }
 
-@media screen and (min-device-width: 400px) {
+@media screen and (min-width: 400px) {
     .typeahead-header {
         font-size: 26pt;
     }   
@@ -84,7 +84,7 @@
     }
 }
 
-@media screen and (min-device-width: 500px) {
+@media screen and (min-width: 500px) {
     .typeahead-header {
         font-size: 32pt;
     }
@@ -94,44 +94,44 @@
     }
 }
 
-@media screen and (min-device-width: 600px) {
+@media screen and (min-width: 600px) {
     .typeahead-header {
         font-size: 38pt;
     }
 }
 
-@media screen and (min-device-width: 700px) {
+@media screen and (min-width: 700px) {
     .typeahead-header {
         font-size: 44pt;
     }
 }
 
-@media screen and (min-device-width: 800px) {
+@media screen and (min-width: 800px) {
     .typeahead-header {
         font-size: 48pt;
     }
 }
 
 
-@media screen and (min-device-width: 900px) {
+@media screen and (min-width: 900px) {
     .typeahead-header {
         font-size: 56pt;
     }
 }
 
-@media screen and (min-device-width: 1000px) {
+@media screen and (min-width: 1000px) {
     .typeahead-header {
         font-size: 60pt;
     }
 }
 
-@media screen and (min-device-width: 1100px) {
+@media screen and (min-width: 1100px) {
     .typeahead-header {
         font-size: 88pt;
     }
 }
 
-@media screen and (min-device-width: 1600px) {
+@media screen and (min-width: 1600px) {
     .typeahead-header {
         margin: 35px 200px 0 200px;
     }
