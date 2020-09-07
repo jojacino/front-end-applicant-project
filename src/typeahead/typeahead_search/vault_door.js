@@ -5,7 +5,7 @@ import './vault.css'
 function VaultDoor(props) {
     return (
         <div
-            className={'vault-door' + ' vault-door-' + props.vaultIs} >
+            className={'vault-door vault-door-' + props.vaultIs} >
 
             <div
                 onMouseEnter={props.handleVaultMouseEnter}

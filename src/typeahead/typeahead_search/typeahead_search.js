@@ -16,14 +16,15 @@ class TypeAhead extends Component {
         super(props)
 
         this.state = {
-            value:  '', 
+            value: '',
             list: this.props.receivedList || [],
             suggestions: [],
-            dictionaryObjects: [],
+            dictionary: [],
             themeColor: 'var(--color-light-gray)',
             defaultColor: 'var(--color-light-gray)',
             suggestionElements: document.getElementsByClassName('suggestion-item'),
-            suggestionElementIndex: 0,
+            dictionaryElements: document.getElementsByClassName('dictionary-item'),
+            elementIndex: 0,
             vaultIs: 'closed',
             mode: 'color'
         }
@@ -32,8 +33,14 @@ class TypeAhead extends Component {
         this.handleBlur = this.handleBlur.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleFocus = this.handleFocus.bind(this)
-        this.handleKeyPress = this.handleKeyPress.bind(this)
+        this.handleDoubleClick = this.handleDoubleClick.bind(this)
         this.handleSelection = this.handleSelection.bind(this)
+
+        // bind of key press
+        this.handleKeyPressEnter = this.handleKeyPressEnter.bind(this)
+        this.handleKeyPressTab = this.handleKeyPressTab.bind(this)
+        this.handleKeyPressArrow = this.handleKeyPressArrow.bind(this)
+        this.handleKeyPressEsc = this.handleKeyPressEsc.bind(this)
 
         // binding for vault door
         this.handleVaultMouseEnter = this.handleVaultMouseEnter.bind(this)
@@ -49,14 +56,35 @@ class TypeAhead extends Component {
      * Suggestion List Update Methods
      */
     useColorMode() {
+
         //console.log("ENTERING COLOR MODE")
-        // set list to props recieved and mode to 'color': reset dictionaryObjects
-        this.setState({ list: this.props.receivedList, mode: 'color' , dictionaryObjects: [] })
+
+        // set list to props recieved and mode to 'color': reset dictionary
+        this.setState({
+            list: this.props.receivedList,
+            suggestions: [],
+            dictionary: [],
+            suggestionElements:[],
+            dictionaryElements: [],
+            elementIndex: 0,
+            mode: 'color'
+        })
+
     }
     useDictionaryMode() {
+
         //console.log("ENTERING DICTIONARY MODE")
+
         // reset list, set mode to 'dictionary'
-        this.setState({ list: [], mode: 'dictionary' })
+        this.setState({
+            list: [],
+            suggestions: [],
+            dictionary: [],
+            suggestionElements: [],
+            dictionaryElements: [],
+            elementIndex: 0,
+            mode: 'dictionary'
+        })
 
     }
 
@@ -77,14 +105,20 @@ class TypeAhead extends Component {
 
         //console.log(this.state.mode)
 
-        var value = e.target.value.replace(/[^a-zA-Z0-9\s]/g, '')
+        // format the value
+        var value = e.target.value.replace(/[^a-zA-Z0-9\s',_-]/g, '')// allowed chars
+
+        // set value early for speed increase
+        this.setState({ value })
 
         // if input value get filtered suggestions / sorted and match to input
         if (value.length) {
 
             /** check the mode; if it is dictionary get thesaurus help for the word */
             if (this.state.mode === 'dictionary') {
+                // in input, dictionary mode
 
+                // lookup word in the thesaurus for suggestions
                 this.thesaurusSuggestions(e.target.value)
                     .then(thesaurus => {
 
@@ -94,37 +128,50 @@ class TypeAhead extends Component {
                         // the xhr has returned some data
                         if (thesaurus.length) {
 
-                            // thesaurs has returned research on possible suggestions
+                            // thesaurs has returned an array of objects / possible suggestions
                             if (thesaurus[0] instanceof Object) {
                                 //console.log("SHOWING OBJECT 0")
                                 //console.log(thesaurus[0])
 
+                                // build a map of strings from the object array
                                 var list = thesaurus.map(obj => {
 
+                                    //console.log("SHOWING THESAURUS OBJ")
+                                    //console.log(obj)
                                     return obj.hwi.hw
                                 })
 
-                                //console.log("SHOWING LIST OF OBJ RETURNS")
+                                //console.log("SHOWING LIST COMPILED FROM THESAURUS OBJs")
                                 //console.log(list)
 
-                                // match non-case-specificly to suggestions
+                                // match with non-case-specificly the typed string to possible suggestions NOTE: bold set in render method of component using boldChars() local method
                                 var suggestions = list.sort().filter(item => item.toLowerCase().match(value.toLowerCase()))
 
-                                // set new input display value list and suggestions
-                                this.setState({ list, suggestions })
+                                //console.log("SHOWING SUGGESTIONS FROM LIST COMPILED FROM THESAURUS OBJs")
+                                //console.log(suggestions)
+
+                                // set suggestions and suggestion elements
+                                this.setState({
+                                    suggestions,
+                                    suggestionElements: document.getElementsByClassName('suggestion-item')
+                                })
+
                             }
                             else if (typeof (thesaurus[0]) === 'string') {
                                 //console.log("SHOWING STRING 0")
                                 //console.log(thesaurus[0])
 
-                                // build the list
-                                var list = [...thesaurus]
-
                                 // match non-case-specificly to suggestions
-                                var suggestions = list.sort().filter(item => item.toLowerCase().match(value.toLowerCase()))
+                                suggestions = thesaurus.sort().filter(item => item.toLowerCase().match(value.toLowerCase()))
 
-                                // set new input display value, list, and suggestions
-                                this.setState({ list, suggestions })
+                                //console.log("SHOWING SUGGESTIONS FROM THESAURUS")
+                                //console.log(thesaurus[0])
+
+                                // set suggestions and suggestion elements
+                                this.setState({
+                                    suggestions,
+                                    suggestionElements: document.getElementsByClassName('suggestion-item')
+                                })
                             }
                         }
                     })
@@ -134,27 +181,43 @@ class TypeAhead extends Component {
                 // match non-case-specificly to suggestions
                 var suggestions = this.state.list.sort().filter(item => item.toLowerCase().match(value.toLowerCase()))
 
-                // set new input display value and suggestions
-                this.setState({ suggestions })
+                //console.log("SHOWING SUGGESTIONS FROM RECIEVED LIST")
+                //console.log(this.state.list[0])
 
+                // set suggestions and suggestion elements
+                this.setState({
+                    suggestions,
+                    suggestionElements: document.getElementsByClassName('suggestion-item')
+                })
             }
-
-            // set value as you type
-            this.setState({ value })
         }
         else // clear suggestions and value on select if no reason or match
             this.setState({ suggestions: [], value: '' })
-    } 
+
+    }
     handleFocus(e) {
-        e.preventDefault()
+        if (e.relatedTarget) return // return if focused from suggestion or dictionary definition
+
+        //console.log("SHOWING HANDLE FOCUS")
+        //console.log(e.relatedTarget)
 
         //console.log("Focus")
         this.handleChange(e)
     }
+    handleDoubleClick(e) {
+
+        // clear the input on double click
+        this.setState({
+            value: '',
+            suggestions: [],
+            dictionary: []
+        })
+    }
     handleBlur(e) {
 
-       //console("Blur")
-       //console(e.relatedTarget)
+        //console.log("Blur")
+        //console.log(e.relatedTarget)
+        //console.log(e.target)
 
         /** only clear suggestions if tabbing away from input and suggestion list */
         if (!e.relatedTarget) { // comes back null if new target is not an input and does NOT have a tabIndex
@@ -164,127 +227,347 @@ class TypeAhead extends Component {
         }
 
     }
-    handleKeyPress(e) {
-        //console.log("handleKeyPress")
-        //console.log(e)
+    handleSelection(e) {
 
-        // get element with focus
-        var focus = document.activeElement
+        //console.log("SHOWING INNERHTML OF SUGGESTION IN handleSelection")
+        //console.log(e.target.innerHTML)
 
-        // get id of element with focus
-        var id = focus.id
+        // walk-down log
+        //console.log("SHOWING THE STATE BEFORE")
+        //console.log(this.state)
 
-        // use state.suggestionElementIndex to cycle selections
-        var index = this.state.suggestionElementIndex
+        // check what mode the app is in
+        if (this.state.mode === 'color') { // COLOR MODE
+
+            // clear out the bold JSX from string before putting it in the input
+            var value = this.removeHtmlTags(e.target.innerHTML)
+
+            // set focus to input
+            document.getElementById('typeahead-input').focus()
+
+            // set sate value and css color to innerHTML of selection and reset state suggestions
+            this.setState({
+                value,
+                themeColor: value,
+                suggestions: []
+            })
+
+        }
+        else { // in dictionary mode
+
+            console.log("SHOWING ACTIVE ELEM ID IN DICTIONARY onSelect")
+            console.log('active elem id: ', '"' + document.activeElement.id + '"')
+
+            if (document.activeElement.id === 'suggestion-item') {// a thesaurus suggestion was selected
+
+                // clear out the bold JSX from string before putting it in the input
+                var value = this.removeHtmlTags(e.target.innerHTML)
+                this.setState({ value })
+
+                // lookup word in the dictionary and save to local memory address
+                this.dictionaryLookup(value)
+
+            }
+            else if (document.activeElement.id === 'dictionary-item') { // a dictionary definition was selected
+
+                // set dictionaryElementIndex to e.target.index
+                //var index = this.state.dictionaryElements.indexOf(e.target)
+
+                console.log("SHOWING DICTIONARY ELEMENT")
+                console.log(e.target)
+                console.log(e.relatedTarget)
+            }
+        }
+
+        // clear suggestions 
+        this.setState({ suggestions: [] })
+
+        // set focus to input
+        document.getElementById('typeahead-input').focus()
+
+
+        //console.log("SHOWING THE STATE AFTER")
+        //console.log(this.state)
+    }
+
+    // Document KEY PRESS LISTENERS
+    handleKeyPressTab(e) {
+
+        // variable to test if list is suggestions or dictionary
+        var isDictionary = this.state.dictionaryElements.length > 0
+
+        // get list and index based on above
+
+        // use element index to cycle selections
+        var index = this.state.elementIndex
+        var arrElements = isDictionary ? this.state.dictionaryElements : this.state.suggestionElements
 
         // verify which key is pressed
         if (e.shiftKey && e.keyCode === 9) { // UP TAB
-            //console("Shift + Tab Keys Pressed")
 
             // exit if index is at 0 and let tab do tab
-            if(index === 0) return
+            if (index === 0) return
 
-            // decrement index
+            //console.log("SHOWING STATE DICTIONARY ELEMENTS IN onKeyPress Up Tab")
+            //console.log(this.state.dictionaryElements)
+
             index--
 
-            // decrement suggestionElementIndex in state
-            this.setState({ suggestionElementIndex: index })
+            // set state indices to index
+            this.setState({ elementIndex: index })
+
 
         }// UP TAB
         if (!e.shiftKey && e.keyCode === 9) { // DOWN TAB
-           //console("Tab Key Pressed")
 
-            // increment suggestionElementIndex in state
-            index++
-
-            // if on last suggestion cycle index to 0 and focus on input
-            if (index >= this.state.suggestionElements.length) {
+            // if on last list item; cycle index to 0 and focus on input
+            if (index >= arrElements.length) { // tabbing down at end of list
 
                 // reset index to 0
                 index = 0
 
-                // focus on input
+                // cycle tab back to top NOTE: will land focus on input but after this if statement a new index is set: Goes to arrElements[0]
                 document.getElementById('typeahead-input').focus()
+
             }
 
-            // increment suggestionElementIndex in state
-            this.setState({ suggestionElementIndex: index })
+            // increment index
+            index++
+
+            // set state elementIndex to index
+            this.setState({ elementIndex: index })
+
 
         }// DOWN TAB
-        if (e.key === 'Enter') {
+    }
+    handleKeyPressArrow(e) {
+
+        // variable to test if list is suggestions or dictionary
+        var isDictionary = this.state.dictionaryElements.length > 0
+
+        // detect whether showing suggestion or definition list
+
+        // use dictionaryElementsIndex or state.suggestionElementIndex to cycle selections
+        var index = isDictionary ? this.state.dictionaryElementIndex : this.state.suggestionElementIndex
+        var arrElements = isDictionary ? this.state.dictionaryElements : this.state.suggestionElements
+
+        if (e.key === 'ArrowUp') {
+            //console.log("Up Key Pressed")
+
+            // exit if suggestions are empty
+            if (this.state.suggestions.length === this.state.dictionary.length === 0) return
+
+            // if id === suggestion or dictionary item than focus cycles up, we decrement but focus on input if focus is on item(0)
+            if (document.activeElement.id === 'suggestion-item' || document.activeElement.id === 'dictionary-item') {
+                // navigating lists with Up ARROW
+                //console.log("SELECTION ITEM")
+
+                // if on the first suggestion focus on input
+                if (index === 0) {
+
+                    document.getElementById('typeahead-input').focus()
+
+                }
+                else { // focus is on a suggestion or dictionary element further down
+
+                    //console.log("INDEX NOT ZERO")
+
+                    // decrement index and cycle selection upward
+                    index--
+
+                    // set in state
+                    this.setState({
+                        dictionaryElementIndex: index,
+                        suggestionElementIndex: index
+                    })
+
+                    // set focus to first element in list if it  has content
+                    arrElements.item(index).focus()
+
+                }
+
+            }
+            else if (document.activeElement.id === 'typeahead-input') { // focus is on input
+                // in input, UP ARROW PRESSED
+                //console.log("TYPEAHEAD INPUT")
+
+                // reset dictionary element index in state to 0
+                this.setState({
+                    dictionaryElementIndex: this.state.dictionaryElements.length - 1,
+                    suggestionElementIndex: this.state.suggestionElements.length - 1
+                })
+
+                // set focus to first element in list if it  has content
+                arrElements.item(index).focus()
+
+            }
+            else // set focus to the input                
+                document.getElementById('typeahead-input').focus()
+
+        }// UP ARROW
+        else if (e.key === 'ArrowDown') { // DOWN ARROW
+            //console.log("DOWN Key Pressed")
+
+            // exit if suggestions are empty
+            if (this.state.suggestions.length === this.state.dictionary.length === 0) return
+
+            // if id === suggestion or dictionary item than focus is already on a list item; so we increment
+            if (document.activeElement.id === 'suggestion-item' || document.activeElement.id === 'dictionary-item') {
+
+                // increment index and cycle if at state.suggestionElements length
+                index++
+
+                if (index >= arrElements.length) index = 0
+
+                // save to state
+                this.setState({ dictionaryElementIndex: index, suggestionElementIndex: index })
+
+                // set focus to first element in list if it  has content
+                arrElements.item(index).focus()
+            }
+            else if (document.activeElement.id === 'typeahead-input') { // focus is on input
+
+                //console.log("TYPEAHEAD")
+
+                // reset indices in state to 0
+                this.setState({ dictionaryElementIndex: 0, suggestionElementIndex: 0 })
+
+                console.log(arrElements)
+                console.log("*********HERE*************")
+                alert('look')
+
+                // set focus to first element in list if it  has content
+                arrElements.item(index).focus()
+
+            }
+            else // set focus to the input if focus is somewhere else on the page
+                document.getElementById('typeahead-input').focus()
+
+        }// DOWN ARROW        
+    }
+    handleKeyPressEnter(e) {
+        if (e.key === 'Enter') { // ENTER KEY PRESSED
             console.log("Enter Key Pressed")
 
-            // set memory for the final value
-            var value
-
             // what if focus is on the input
-            if (id === 'typeahead-input') {
+            if (document.activeElement.id === 'typeahead-input') { // FOCUS IS ON TYPEAHEAD INPUT
 
                 // reset input if input is blank or only space characters
-                if (e.target.value === '' || e.target.value.match(/^[\s]/g)) {
+                if (e.target.value === '' || e.target.value.match('^ * $')) { // ONLY SPACES OR EMPTY
 
-                    if (this.state.mode === 'color') {
+                    if (this.state.mode === 'color') { // MODE IS COLOR MODE
+                        // on input, Enter key pressed, color mode, empty string
 
-                        // set state themeColor to default
+                        // set state themeColor to default and reset value and suggestions
                         this.setState({ value: '', suggestions: [], themeColor: this.state.defaultColor })
                     }
-                    else if (this.state.mode === 'dictionary') {
+                    else if (this.state.mode === 'dictionary') { // MODE IS DICTIONARY MODE
+                        // on input, Enter key pressed, dictionary mode, empty string
 
-                        // reset state value, suggestions, and list
-                        this.setState({ value: '', suggestions: [], list: [] })
+                        // reset state value, thesaurus suggestions, list, and dictionary objects
+                        this.setState({ value: '', dictionary: [], suggestions: [] })
+
                     }
-
-                    // clear empty input
-                    e.target.value = ''
 
                     // exit
                     return
                 }
-                else { // there is a value besides only space charsj, focus is on input, Enter key pressed
+                else { // THE INPUT CONTAINS VALID CHARS OTHER THAN SPACES
 
                     // set the value of input to matching value in list on pressing enter inside the input
-                    value = this.state.suggestions.find(item => item.toLowerCase() === focus.value.toLowerCase())
+                    // lookup value of input in suggestions
 
-                    // cancle actions if input value is not found in suggestions list
-                    if (!value) return // do nothing
-                    else {
+                    // check if input value was found in received list
+                    if (this.state.mode === 'color') { // MODE IS COLOR MODE
+                        // on the input, Enter key pressed, in color mode string was looked up
 
-                        // look up the word in the dictionary
-                        this.dictionaryLookup(value)
+                        var lookup = this.state.suggestions.find(item => item.toLowerCase() === document.activeElement.value.toLowerCase())
+
+                        console.log("SHOWING LIST LOOKUP FOR STRING ON ENTER KEY")
+                        console.log(lookup)
+
+                        // cancle actions if input value is not found in suggestions list
+                        if (!lookup) { // THE INPUT VALUE WAS NOT FOUND IN SUGGESTIONS
+
+                            return
+
+                        }
+                        else { // THE INPUT VALUE WAS FOUND IN SUGGESTIONS
+
+                            // set the input value to innerHTML of suggestion that matches it
+                            // set themeColor to value and close suggestions
+                            this.setState({ value: lookup, themeColor: lookup, suggestions: [] })
+                        }
                     }
-                } 
-            }
-            else if (id === 'suggestion-item') {
+                    else if (this.state.mode === 'dictionary') { // MODE IS DICTIONARY MODE
+                        // on the input, Enter key pressed, in dictionary mode, string is text
+
+                        // close suggestions
+                        this.setState({ suggestions: [] })
+
+                        // set the value of input to matching value in thesauus suggestions
+                        // lookup value of input in thesaurus suggestions
+                        var lookup = this.state.suggestions.find(item => item.toLowerCase() === document.activeElement.value.toLowerCase())
+
+                        console.log("Showing value of looked up word from thesaurus")
+                        console.log(lookup)
+
+                        // check if value was found in thesaurus
+                        if (!lookup) { // THE INPUT VALUE WAS NOT FOUND IN THESAURUS
+                            // on the input, Enter key pressed, in dictionary mode, string is valid but unkown
+
+                            // look up the word in the dictionary
+                            this.dictionaryLookup(document.activeElement.value)
+                        }
+                        else { // THE INPUT VALUE WAS FOUND IN THESAURUS
+
+                            // set input value to matching selection, close suggestions
+                            this.setState({ value: lookup, suggestions: [] })
+
+                            // look up the word in the dictionary
+                            this.dictionaryLookup(lookup)
+
+                        }
+                    }
+                }
+
+            } // WHILE ON THE INPUT
+            else if (document.activeElement.id === 'suggestion-item') { // WHILE ON A SUGGESTION (CLICK, TABBING OR ARROWS)
                 // focus is on a suggestion item, and  the Enter key was pressed
 
+                // set the focus to the input again
+                document.getElementById('typeahead-input').focus()
+
                 // clear out the bold JSX from string before putting the suggestion's text in the input
-                value = this.removeHtmlTags(e.target.innerHTML)
+                var value = this.removeHtmlTags(e.target.innerHTML)
 
                 // check which mode we are in
-                if (this.state.mode === 'color') { // MODE IS COLOR
+                if (this.state.mode === 'color') { // COLOR MODE
 
-                    // set sate value to innerHTML of selection
+                    // SET VALUE TO INNERHTML OF SUGGESTION AND THEM WITH THE COLOR
+
                     this.setState({
                         value,
                         themeColor: value
                     })
                 }
-                else if (this.state.mode === 'dictionary') { // MODE IS DICTIONARY
+                else if (this.state.mode === 'dictionary') { // DEFINITION MODE
 
-                    // reset state value, suggestions, and list
-                    this.setState({ value, suggestions: [], list: [], dictionaryObjects: [] })
+                    // SET VALUE TO SELECTION AND LOOK UP THE ITEM
+
+                    // set value, and reset suggestions and dictionary
+                    this.setState({ value, suggestions: [], dictionary: [] })
 
                     // look up the word in the dictionary
                     this.dictionaryLookup(value)
                 }
             }
 
-            // set the focus to the input again
-            document.getElementById('typeahead-input').focus()
-
         }// ENTER KEY
-        else if (e.key === 'Escape') {
-           //console("Escape Key Pressed")
+    }
+    handleKeyPressEsc(e) {
+        if (e.key === 'Escape') {
+        //console.log("Escape Key Pressed")
 
             // close the suggestions list if it is open
             if (this.state.suggestions.length) {
@@ -293,116 +576,10 @@ class TypeAhead extends Component {
                 document.getElementById('typeahead-input').focus()
 
                 // reset state.suggestions
-                this.setState({ suggestions: [] })
+                this.setState({ suggestions: [], dictionary: [] })
 
             }
         }// ESCAPE KEY
-        else if (e.key === 'ArrowUp') {
-           //console("Up Key Pressed")
-
-            // exit if suggestions are empty
-            if (this.state.suggestions.length === 0) return
-
-            // if id === suggestion-item than focus cycles up, we decrement but focus on input if focus is on item(0)
-            if (id === 'suggestion-item') {
-
-               //console("SUGGESTION ITEM")
-
-                // if on the first suggestion focus on input
-                if (index === 0) document.getElementById('typeahead-input').focus()
-                else { // focus is on a suggestion element
-
-                   //console("INDEX NOT ZERO")
-
-                    // decrement index and cycle selection upward
-                    index--
-
-                    // set in state
-                    this.setState({ suggestionElementIndex: index })
-
-                    // set focus to first element in suggestions list if suggestions has content
-                this.state.suggestionElements.item(this.state.suggestionElementIndex).focus()
-                }
-
-            }
-            else if (id === 'typeahead-input') { // focus is on input
-
-               //console("TYPEAHEAD")
-
-                // reset suggestions element index in state to 0
-                this.setState({ suggestionElementIndex: this.state.suggestionElements.length - 1 })
-
-                // set focus to first element in suggestions list if suggestions has content
-                this.state.suggestionElements.item(this.state.suggestionElementIndex).focus()
-            }
-            else // set focus to the input                
-                document.getElementById('typeahead-input').focus()
-        }// UP ARROW
-        else if (e.key === 'ArrowDown') {
-           //console("DOWN Key Pressed")
-
-            // exit if suggestions are empty
-            if (this.state.suggestions.length === 0) return
-
-            // if id === suggestion-item than focus is already on a list item; so we increment
-            if (id === 'suggestion-item') {
-
-               //console("SUGGESTION ITEM")
-
-                // increment index and cycle if at state.suggestionElements length
-                index++
-
-                if (index >= this.state.suggestionElements.length) index = 0
-
-                // save to state
-                this.setState({ suggestionElementIndex: index })
-
-                // set focus to element at new index
-                this.state.suggestionElements.item(this.state.suggestionElementIndex).focus()
-            }
-            else if (id === 'typeahead-input') { // focus is on input
-
-               //console("TYPEAHEAD")
-
-                // reset suggestions element index in state to 0
-                this.setState({ suggestionElementIndex: 0 })
-
-                // set focus to first element in suggestions list if suggestions has content
-                this.state.suggestionElements.item(this.state.suggestionElementIndex).focus()
-            }
-            else // set focus to the input if focus is somewhere else on the page
-                document.getElementById('typeahead-input').focus()
-        }// DOWN ARROW
-    }
-    handleSelection(e) {
-
-        //console.log("SHOWING COLOR IN handleSelection")
-        //console.log(e.target.innerHTML)
-
-        // clear out the bold JSX from string before putting it in the input
-        var value = this.removeHtmlTags(e.target.innerHTML)
-
-        if (this.state.mode === 'color') {
-
-            // set sate value to innerHTML of selection and reset suggestions
-            this.setState({
-                value,
-                suggestions: [],
-                themeColor: value
-            })
-        }
-        else if (this.state.mode === 'dictionary') {
-
-            // set sate value to innerHTML of selection and reset suggestions, and dictionaryObjs before new lookup
-            this.setState({
-                value,
-                suggestions: [],
-                dictionaryObjects: []
-            })
-
-            // look up the word in the dictionary
-            this.dictionaryLookup(value)
-        }
     }
 
     // text methods
@@ -411,12 +588,17 @@ class TypeAhead extends Component {
         return str.replace('<b>', '').replace('</b>', '').replace('<div>', '').replace('</div>', '')
     }
     boldChars(str, sub) {
+        //console.log("SHOWING boldChars")
+        //console.log('str: ', str, ' | sub: ', sub)
 
         // match with case insensitivity
         var index = str.toLowerCase().indexOf(sub.toLowerCase())
 
-        // cancel method if no substring is found
-        if(index === -1) return
+        // return bold if index is found; or return as is text
+        if (index === -1) {
+
+            return str
+        }
 
         // slice up string to bold the matching portion
         var start = str.slice(0, index)
@@ -470,39 +652,60 @@ class TypeAhead extends Component {
             request.send()
         })
     }
+    thesaurusSuggestions(word) {
+        // end point for dictionary.com thesaurus
+        const thesExp = 'https://www.dictionaryapi.com/api/v3/references/thesaurus/json/' + word + '?key=35c898d4-6518-4c3c-8289-91eb8ec78c8e'
+        // returns XHR Promise
+        return this.xhrPromise(thesExp)
+            .then(arrThesaurus => {
+                //console.log("thesaurusSuggestions")
+                //console.log(arrThesaurus)
+                return arrThesaurus
+            })
+    }
     dictionaryLookup(value) {
         // end point for dictionary.com
         const endPoint = 'https://www.dictionaryapi.com/api/v3/references/collegiate/json/' + value + '?key=805ab663-44f1-4bc9-a1ff-c3b2f743d1fb'
         // returns XHR Promise
         return this.xhrPromise(endPoint)
-            .then(dictionary => {
-               //console.log("dictionaryLookup")
+            .then(lookup => {
+                console.log("dictionaryLookup")
 
-                console.log("SHOWING DICTIONARY LOOKUP FOR: " + value)
-                console.log(dictionary)
+                //console.log("SHOWING DICTIONARY LOOKUP FOR: " + value)
+                //console.log('value: ', value, 'type: ', typeof(lookup[0]))
+                //console.log(lookup)
 
-                if (dictionary.length)
-                    this.setState({ dictionaryObjects: [...dictionary] })
+                // check to see if return is suggestions or definitions
+                if (typeof (lookup[0]) === 'object') { // QUERY RETURNED DEFINITION OBJECTS
+
+                    // set state dictionary to lookup
+                    this.setState({ dictionary: lookup })
+
+                }
+                else if (typeof (lookup[0]) === 'string') { // QUERY RETURNED MORE SUGGESTION STRINGS
+
+                    // set state dictionary to lookup
+                    this.setState({ suggestions: lookup })
+
+                }
+
+                // return for additional usage
+                return lookup
             })
     }
-    thesaurusSuggestions(word) {
-        // end point for dictionary.com thesaurus
-        const thesExp = 'https://www.dictionaryapi.com/api/v3/references/thesaurus/json/' + word + '?key=35c898d4-6518-4c3c-8289-91eb8ec78c8e'
-         // returns XHR Promise
-        return this.xhrPromise(thesExp)
-            .then(arrThesaurus => {
-               //console.log("thesaurusSuggestions")
-                //console.log(arrThesaurus)
-                return arrThesaurus
-            })
-    }
 
+    /**
+     *  Component Rendering Section
+     */
     // rendering methods
     componentDidMount() {
 
         /** add doument event listeners on render /**/
         document.addEventListener('keydown', (e) => {
-            this.handleKeyPress(e)
+            this.handleKeyPressTab(e)
+            this.handleKeyPressArrow(e)
+            this.handleKeyPressEnter(e)
+            this.handleKeyPressEsc(e)
         })
 
     }
@@ -510,7 +713,10 @@ class TypeAhead extends Component {
 
         /** remove doument event listeners  before de-render /**/
         document.removeEventListener('keydown', (e) => {
-            this.handleKeyPress(e)
+            this.handleKeyPressTab(e)
+            this.handleKeyPressArrow(e)
+            this.handleKeyPressEnter(e)
+            this.handleKeyPressEsc(e)
         })
 
     }
@@ -548,6 +754,7 @@ class TypeAhead extends Component {
                     <TypeAheadInput
                         handleChange={this.handleChange}
                         handleFocus={this.handleFocus}
+                        handleDoubleClick={this.handleDoubleClick}
                         themeColor={this.state.themeColor}
                         value={this.state.value} />
 
@@ -561,14 +768,15 @@ class TypeAhead extends Component {
 
                 <section className="dictionary-definitions-section">
 
-                    <DictionaryContainer dictionary={ this.state.dictionaryObjects } />
+                    <DictionaryContainer handleSelection={this.handleSelection} dictionary={ this.state.dictionary } />
 
                 </section>
 
                 <VaultDoor
                     handleVaultMouseEnter={this.handleVaultMouseEnter}
                     handleVaultMouseLeave={this.handleVaultMouseLeave}
-                    vaultIs={ this.state.vaultIs } />
+                    vaultIs={this.state.vaultIs} />
+
                 { /** End of Component  /**/}
 
             </div>

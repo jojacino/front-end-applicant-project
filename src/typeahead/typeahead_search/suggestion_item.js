@@ -5,11 +5,13 @@ class SuggestionItem extends Component {
     render() {
         return (
             <div
-                onMouseUp={this.props.onMouseUp}
+                onMouseUp={this.props.handleSelection}
                 tabIndex={this.props.tabIndex}
                 className="suggestion-item"
                 id={this.props.id}>
+
                 {this.props.children}
+
             </div>
         )
     }

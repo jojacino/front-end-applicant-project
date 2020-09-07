@@ -11,20 +11,20 @@ class SuggestionContainer extends Component {
             < div className="suggestions-container" >
                 {/** TypeAhead Suggestions / AutoComplete Section /**/}
                 <div className="suggestions-list">
-                    {this.props.suggestions.map((suggestion, index) => {
+                    {this.props.suggestions.map ? this.props.suggestions.map((suggestion, index) => {
 
                         return (
                             <SuggestionItem
-                                key={'item:' + index}
+                                key={'suggestion:' + index}
                                 id="suggestion-item"
-                                tabIndex={index / 1000}
-                                onMouseUp={this.props.handleSelection}>
+                                tabIndex={index / 1000000}
+                                handleSelection={this.props.handleSelection}>
 
                                 {this.props.boldChars(suggestion, this.props.value)}
 
                             </SuggestionItem>
                         )
-                    })}
+                    }) : <div>No Suggestions</div>}
                 </div>
             </div >
         )

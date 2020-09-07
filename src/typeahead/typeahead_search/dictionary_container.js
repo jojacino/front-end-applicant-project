@@ -10,15 +10,17 @@ class DictionaryContainer extends Component {
         return (
             < div className="dictionary-container" >
                 {/** TypeAhead Dictionary Section /**/}
-                {this.props.dictionary.map((obj, index) => {
+                {this.props.dictionary.map ? this.props.dictionary.map((obj, index) => {
 
                     return (
                         <DictionaryItem
-                            key={'item:' + index}
-                            tabIndex={index / 50}
+                            key={'dictionary:' + index}
+                            id="dictionary-item"
+                            tabIndex={index / 1000000}
+                            handleSelection={this.props.handleSelection}
                             lookup={obj} />
                     )
-                })}
+                }) : <div></div>}
             </div >
         )
     }

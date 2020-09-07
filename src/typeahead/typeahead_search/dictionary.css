@@ -28,11 +28,13 @@
     border-bottom: solid thin var(--color-shiney-black);
     margin: 5px 0;
     padding: 20px 9px;
-    background-color: white;
+    background-color: var(--color-light-gray);
     border-radius: 0 0 15px 15px;
-
     width: 100%;
 }
+    .dictionary-item:focus {
+        background-color: white;
+    }
 
 .dictionary-item-lable-bar {
     position: absolute;
@@ -56,8 +58,8 @@
     align-items: center;
     justify-content: flex-start;
     line-height: 12px;
-    margin: 10px 5px;
     padding: 5px;
+    border-bottom: solid thin var(--color-light-gray);
 }
 .dictionary-item-lable-tab {
     position: absolute;
@@ -66,25 +68,37 @@
     justify-self: center;
     height: 100%;
     width: 10px;
-    background-color: var(--color-black);
+    background-color: var(--color-off-white);
     border-radius: 15px 0 0 15px;
 }
 .dictionary-info-lable {
     text-align: center;
     font-size: 8pt;
-    font-weight: 100;
+    font-weight: 900;
     font-family: var(--font-serif);
     width: 100%;
-    margin: 5px;
     padding: 5px;
 }
-.dictionary-info-header {
+.dictionary-info-text, .dictionary-info-text-word {
     text-align: center;
     font-size: 9pt;
-    font-weight: bold;
+    color: black;
     width: 100%;
-    margin: 0 5px;
-    padding: 5px;
+    padding: 0px;
+}
+
+.dictionary-info-text-word {
+    font-size: 12pt;
+    font-style: italic;
+}
+
+.dictionary-info-pos-line {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+    border-bottom: solid thin var(--color-light-gray);
+    border-left: solid thin var(--color-med-gray);
 }
 
 @media only screen and (min-width: 100px) {
