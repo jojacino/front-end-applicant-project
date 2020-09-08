@@ -570,7 +570,7 @@ class TypeAhead extends Component {
                     // format incomming strings to title case
                     if (words) // return the formatted string of compound words mapped with title case
                         return words.map(word => word.split('').map((char, index) => index ? char.toLowerCase() : char.toUpperCase()).join('')).join(' ')
-                    else // map to an array of title case words
+                    else // map to an array of title case words 
                         return arrThesaurus.map(word => word.split('').map((char, index) => index > 0 ? char.toLowerCase() : char.toUpperCase()).join(''))
                 })
 
@@ -678,7 +678,7 @@ class TypeAhead extends Component {
                         handleDoubleClick={this.handleDoubleClick}
                         themeColor={this.state.themeColor}
                         defaultColor={this.state.defaultInputColor}
-                        value={this.state.value} />
+                        value={this.state.value || ''} />
 
                     <SuggestionContainer
                         boldChars={this.boldChars}
