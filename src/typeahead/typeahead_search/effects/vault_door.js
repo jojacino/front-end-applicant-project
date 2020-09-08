@@ -8,7 +8,7 @@ function VaultDoor(props) {
             className={'vault-door vault-door-' + props.vaultIs} >
 
             <div
-                onMouseEnter={props.handleVaultMouseEnter}
+                onClick={props.handleVaultMouseEnter}
                 className='vault-face'></div>
 
         </div>

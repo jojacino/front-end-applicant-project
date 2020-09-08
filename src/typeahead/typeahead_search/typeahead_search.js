@@ -92,7 +92,7 @@ class TypeAhead extends Component {
         this.setState({ vaultIs: 'open' })
     }
     handleVaultMouseLeave(e) {
-        this.setState({ vaultIs: 'closed' })
+        //this.setState({ vaultIs: 'closed' })
     }
 
     /**
