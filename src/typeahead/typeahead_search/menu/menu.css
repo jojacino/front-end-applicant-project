@@ -1,0 +1,100 @@
+
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 35px;
+    width: 95%;
+    padding: 5px; 
+    margin: 50px 0;
+}
+
+.button, .button-selected {
+    font-family: var(--font-menu);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    max-width: 400px;
+    width: 100%;
+    font-size: 9pt;
+    color: black;
+    margin: 0;
+    padding: 5px 0 0 0;
+    border-bottom: groove thin black;
+    border-left: groove thin black;
+    border-right: groove thin black;
+    border-radius: 25px 25px 0 0;
+    background-color: var(--color-dark-gray);
+    box-shadow: 0 15px 20px 0 white inset, 45px 0 0 0 var(--color-dark-gray) inset, -45px 0 0 0 var(--color-dark-gray) inset;
+
+}
+    .button:hover {
+        cursor: pointer;
+        border: groove thin var(--color-shiney-black);
+        background-color: var(--color-dark-gray);
+    }
+
+
+.button-selected {
+    color: white;
+    background-color: black;
+    box-shadow: 0 15px 20px 0 var(--color-shiney-black) inset, 45px 0 0 0 var(--color-dark-gray) inset, -45px 0 0 0 var(--color-dark-gray) inset;
+}
+
+@media only screen and (min-width: 150px) {
+
+    .menu {
+        width: 90%;
+    }
+    .button, .button-selected {
+        margin: 0 5px;
+        font-size: 10pt;
+    }
+}
+
+@media only screen and (min-width: 200px) {
+
+    .button, .button-selected {
+        font-size: 12pt;
+    }
+}
+
+@media only screen and (min-width: 300px) {
+
+    .menu {
+        width: 85%;
+    }
+    .button, .button-selected {
+        margin: 0 15px;
+        font-size: 14pt;
+    }
+}
+
+@media only screen and (min-width: 400px) {
+
+    .button, .button-selected {
+        font-size: 16pt;
+    }
+}
+
+@media only screen and (min-width: 500px) {
+
+    .button, .button-selected {
+        font-size: 18pt;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+
+    .button, .button-selected {
+        font-size: 20pt;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+
+    .button, .button-selected {
+        font-size: 22pt;
+    }
+}

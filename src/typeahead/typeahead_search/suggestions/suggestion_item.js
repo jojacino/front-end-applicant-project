@@ -7,7 +7,7 @@ class SuggestionItem extends Component {
             <div
                 onMouseUp={this.props.handleSelection}
                 tabIndex={this.props.tabIndex}
-                className="suggestion-item"
+                className={this.props.className}
                 id={this.props.id}>
 
                 {this.props.children}

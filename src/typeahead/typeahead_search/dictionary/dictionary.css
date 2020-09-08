@@ -26,9 +26,9 @@
     color: var(--color-shiney-black);
     font-size: 14pt;
     border-bottom: solid thin var(--color-shiney-black);
-    margin: 5px 0;
-    padding: 20px 9px;
-    background-color: var(--color-light-gray);
+    margin-bottom: 50px;
+    box-shadow: 0 8px 5px 0 rgba(0,0,0,0.2);
+    background-color: transparent;
     border-radius: 0 0 15px 15px;
     width: 100%;
 }
@@ -57,9 +57,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    line-height: 12px;
     padding: 5px;
-    border-bottom: solid thin var(--color-light-gray);
+    margin: 5px auto auto 0;
+    border-top: solid thin var(--color-med-gray);
 }
 .dictionary-item-lable-tab {
     position: absolute;
@@ -85,6 +85,7 @@
     color: black;
     width: 100%;
     padding: 0px;
+    margin: 8px;
 }
 
 .dictionary-info-text-word {
@@ -101,5 +102,70 @@
     border-left: solid thin var(--color-med-gray);
 }
 
-@media only screen and (min-width: 100px) {
+@media only screen and (min-width: 200px) {
+    .dictionary-info-lable {
+        font-size: 10pt;
+    }
+    .dictionary-info-text {
+        font-size: 12pt;
+    }
+    .dictionary-info-text-word {
+        font-size: 14pt;
+    }
+}
+
+@media only screen and (min-width: 300px) {
+    .dictionary-info-lable {
+        font-size: 12pt;
+    }
+
+    .dictionary-info-text {
+        font-size: 14pt;
+    }
+
+    .dictionary-info-text-word {
+        font-size: 16pt;
+    }
+}
+
+@media only screen and (min-width: 400px) {
+    .dictionary-info-lable {
+        font-size: 14pt;
+    }
+
+    .dictionary-info-text {
+        font-size: 16pt;
+    }
+
+    .dictionary-info-text-word {
+        font-size: 18pt;
+    }
+}
+
+@media only screen and (min-width: 500px) {
+    .dictionary-info-lable {
+        font-size: 16pt;
+    }
+
+    .dictionary-info-text {
+        font-size: 18pt;
+    }
+
+    .dictionary-info-text-word {
+        font-size: 20pt;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .dictionary-info-lable {
+        font-size: 18pt;
+    }
+
+    .dictionary-info-text {
+        font-size: 20pt;
+    }
+
+    .dictionary-info-text-word {
+        font-size: 22pt;
+    }
 }

@@ -1,21 +1,19 @@
 import React, { Component } from 'react'
 
-import { firstNumInString } from '../constants/methods'
+import { firstNumInString } from '../../constants/methods'
 
 // Exported Component
 class DictionaryItem extends Component {
     render() {
 
+        // get dictionary prop
         var lookup = this.props.lookup
-
-        //console.log("SHOWING PROPS INSIDE DICTIONARY ITEM")
-        //console.log(this.props)
 
         return (
             <div
                 tabIndex={this.props.tabIndex}
                 onMouseUp={this.props.handleSelection}
-                className="dictionary-item"
+                className={this.props.className}
                 id={this.props.id}>
 
                 {/** Left Side Graphical **/}

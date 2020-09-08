@@ -16,6 +16,7 @@ class SuggestionContainer extends Component {
                         return (
                             <SuggestionItem
                                 key={'suggestion:' + index}
+                                className="suggestion-item"
                                 id="suggestion-item"
                                 tabIndex={index / 1000000}
                                 handleSelection={this.props.handleSelection}>
@@ -24,7 +25,7 @@ class SuggestionContainer extends Component {
 
                             </SuggestionItem>
                         )
-                    }) : <div>No Suggestions</div>}
+                    }) : <div>loading</div>}
                 </div>
             </div >
         )

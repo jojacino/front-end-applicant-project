@@ -13,7 +13,7 @@
 
 body {
     font-family: var(--font-serif);
-    background: url(./media/images/logo-transparent.png) no-repeat, url(./media/images/bg_repeat.png);
+    background: url(./typeahead/media/images/logo-transparent.png) no-repeat, url(./typeahead/media/images/bg_repeat.png);
     background-size: 100%;
     background-position: center;
     padding: 0;

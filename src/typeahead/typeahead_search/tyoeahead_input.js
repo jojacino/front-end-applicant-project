@@ -6,7 +6,7 @@ class TypeAheadInput extends Component {
         return (
             <div
                 className="typeahead-input-container"
-                style={{ borderColor: this.props.themeColor }}>
+                style={{ borderColor: this.props.themeColor || this.props.defaultColor }}>
 
                 {/** TypeAhead Input Section /**/}
                 <input
@@ -15,8 +15,8 @@ class TypeAheadInput extends Component {
                     type="text"
                     autoComplete="off"
                     onChange={this.props.handleChange}
+                    onMouseUp={this.props.handleDoubleClick}
                     onFocus={this.props.handleFocus}
-                    onDoubleClick={this.props.handleDoubleClick}
                     value={this.props.value}
                     placeholder="Search Blockchains" />
 

@@ -15,6 +15,7 @@ class DictionaryContainer extends Component {
                     return (
                         <DictionaryItem
                             key={'dictionary:' + index}
+                            className={'dictionary-item'}
                             id="dictionary-item"
                             tabIndex={index / 1000000}
                             handleSelection={this.props.handleSelection}
