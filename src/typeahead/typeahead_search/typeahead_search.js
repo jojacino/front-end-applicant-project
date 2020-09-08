@@ -57,19 +57,16 @@ class TypeAhead extends Component {
      */
     useColorMode() {
 
-        //console.log("ENTERING COLOR MODE")
-
         // set list to props recieved and mode to 'color': reset dictionary
         this.setState({
             list: this.props.receivedList,
             suggestions: [],
             dictionary: [],
-            suggestionElements:[],
+            suggestionElements: [],
             dictionaryElements: [],
             elementIndex: 0,
             mode: 'color'
         })
-
     }
     useDictionaryMode() {
 
@@ -638,7 +635,6 @@ class TypeAhead extends Component {
             this.handleKeyPressEnter(e)
             this.handleKeyPressEsc(e)
         })
-
     }
     componentWillUnmount() {
 
@@ -648,7 +644,6 @@ class TypeAhead extends Component {
             this.handleKeyPressEnter(e)
             this.handleKeyPressEsc(e)
         })
-
     }
     render() {
 
