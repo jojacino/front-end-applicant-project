@@ -388,10 +388,6 @@ class TypeAhead extends Component {
                     else if (this.state.mode === 'dictionary') { // MODE IS DICTIONARY MODE
                         // on the input, Enter key pressed, in dictionary mode, string is text
 
-                        // set the value of input to matching value in thesauus suggestions
-                        // lookup value of input in thesaurus suggestions
-                        var lookup = this.state.suggestions.find(item => item.toLowerCase() === document.activeElement.value.toLowerCase())
-
                         // cancle actions if input value is not found in suggestions list
                         if (!lookup) { // THE INPUT VALUE WAS NOT FOUND IN SUGGESTIONS
 
