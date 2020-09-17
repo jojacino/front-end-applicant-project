@@ -1,4 +1,16 @@
-# Project Instructions
+
+To View :
+
+    Open git Bash in The Parent Directory 
+where you want the Clone folder to be 
+placed.
+
+type: 
+
+git clone
+
+_______________________________
+# Original Project Instructions
 
 - This app is currently in a broken state. You must create your component and add it to `ReactDOM.render` in `src/index.js` to get started.
 - Using React and CSS, create a `Typeahead` component that takes a `list` prop.
