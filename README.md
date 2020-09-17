@@ -1,7 +1,6 @@
+To View
 
-To View :
-
-    Open git Bash in The Parent Directory 
+Open git Bash in The Parent Directory 
 where you want the Clone folder to be 
 placed.
 
