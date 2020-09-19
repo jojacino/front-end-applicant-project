@@ -1,3 +1,13 @@
+Type Ahead React Component
+Blockchains Sparks NV
+Front-End-Applicant-Project
+
+Joseph M. Davidson
+Jojacino
+aka #|
+
+_______________________________
+
 ![](https://i.ibb.co/Wg6Zzwt/blockchains01.png)
 ![](https://i.ibb.co/HgSBhQH/blockchains02.png)
 ![](https://i.ibb.co/3mkfqBL/blockchains03.png)
