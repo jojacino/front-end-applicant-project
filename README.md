@@ -7,13 +7,28 @@ Jojacino
 
 _______________________________
 
+Component with closed vault door. (Click to Open)
 ![](https://i.ibb.co/Wg6Zzwt/blockchains01.png)
+
+Component with open vault door. Css Color mode selected
 ![](https://i.ibb.co/HgSBhQH/blockchains02.png)
+
+Component in Css color mode. Searching through prop:colorsList
 ![](https://i.ibb.co/3mkfqBL/blockchains03.png)
+
+Component in Css color mode. Searching through prop:colorsList : BurlyWood Selected
 ![](https://i.ibb.co/LC7GHyg/blockchains04.png)
+
+Component in dictionary.com - dictionary mode. Searching for d
 ![](https://i.ibb.co/qkYmTpx/blockchains05.png)
+
+Component in dictionary.com - dictionary mode. Searching for dog
 ![](https://i.ibb.co/7rX7MtR/blockchains06.png)
+
+Component in dictionary.com - dictionary mode. Displaying Dog NOT SELECTED / HIGHLIGHTED
 ![](https://i.ibb.co/qdXGBYh/blockchains07.png)
+
+Component in dictionary.com - dictionary mode. Displaying Watch Dog SELECTED / HIGHLIGHTED
 ![](https://i.ibb.co/5MtGHQD/blockchains08.png)
 
 _______________________________
