@@ -7,7 +7,7 @@ Jojacino
 
 _______________________________
 
-Component with closed vault door. (Click to Open)
+Component with closed vault door. Component has just loaded (Click to Open)
 ![](https://i.ibb.co/Wg6Zzwt/blockchains01.png)
 
 Component with open vault door. Css Color mode selected
