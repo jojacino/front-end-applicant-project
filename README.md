@@ -2,7 +2,7 @@ Type Ahead React Component |
 Blockchains Sparks NV | 
 Front-End-Applicant-Project
 
-Joseph M. Davidson
+Joseph M. Davidson | 
 Jojacino
 
 _______________________________
