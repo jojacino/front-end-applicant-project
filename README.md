@@ -4,7 +4,6 @@ Front-End-Applicant-Project
 
 Joseph M. Davidson
 Jojacino
-aka #|
 
 _______________________________
 
