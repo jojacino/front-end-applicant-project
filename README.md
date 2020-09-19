@@ -4,9 +4,11 @@ Open git Bash in The Parent Directory
 where you want the Clone folder to be 
 placed.
 
-type: 
-
 git clone
+
+npm install or update
+
+npm start
 
 _______________________________
 # Original Project Instructions
