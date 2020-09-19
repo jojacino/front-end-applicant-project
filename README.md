@@ -29,7 +29,7 @@ Component in dictionary.com - dictionary mode. Searching for d
 Component in dictionary.com - dictionary mode. Searching for dog
 ![](https://i.ibb.co/7rX7MtR/blockchains06.png)
 
-Component in dictionary.com - dictionary mode. Displaying DogSELECTED NOT HIGHLIGHTED
+Component in dictionary.com - dictionary mode. Displaying Dog SELECTED NOT HIGHLIGHTED
 ![](https://i.ibb.co/qdXGBYh/blockchains07.png)
 
 Component in dictionary.com - dictionary mode. Displaying Watch Dog SELECTED and HIGHLIGHTED
