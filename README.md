@@ -32,7 +32,7 @@ Component in dictionary.com - dictionary mode. Searching for dog
 Component in dictionary.com - dictionary mode. Displaying Dog SELECTED NOT HIGHLIGHTED
 ![](https://i.ibb.co/qdXGBYh/blockchains07.png)
 
-Component in dictionary.com - dictionary mode. Displaying Watch Dog SELECTED and HIGHLIGHTED
+Component in dictionary.com - dictionary mode. Displaying Attack Dog SELECTED and HIGHLIGHTED
 ![](https://i.ibb.co/5MtGHQD/blockchains08.png)
 
 _______________________________
